@@ -409,6 +409,7 @@ function UsersTab({ users, loading, search, setSearch, filter, setFilter, onAddU
             <option value="ADMIN">Admin</option>
             <option value="DOCTOR">Doctors</option>
             <option value="NURSE">Nurses</option>
+            <option value="CLINIC">Clinic Staff</option>
             <option value="STUDENT">Students</option>
           </select>
           <button onClick={onAddUser} className="btn-primary py-1.5 text-sm inline-flex items-center gap-1.5 whitespace-nowrap">
@@ -733,6 +734,7 @@ function UserFormModal({ onClose, onSuccess }) {
                 <option value="ADMIN">Admin</option>
                 <option value="DOCTOR">Doctor</option>
                 <option value="NURSE">Nurse</option>
+                <option value="CLINIC">Clinic Staff</option>
                 <option value="STUDENT">Student</option>
               </select>
             </div>
@@ -1021,6 +1023,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                 <option value="ADMIN">Admin</option>
                 <option value="DOCTOR">Doctor</option>
                 <option value="NURSE">Nurse</option>
+                <option value="CLINIC">Clinic Staff</option>
                 <option value="STUDENT">Student</option>
               </select>
             </div>
