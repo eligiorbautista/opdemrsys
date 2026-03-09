@@ -1,22 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "serverless": {
-          "memory": "512 MB",
-          "timeout": 30
-        }
-      }
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 30
     }
-  ],
+  },
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/src/routes/index.js"
+      "src": "/(.*)",
+      "dest": "/api/index.js"
     }
-  ],
-  "buildCommand": "none"
+  ]
 }

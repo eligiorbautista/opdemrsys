@@ -34,8 +34,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`${process.env.SYSTEM_NAME} running on port ${PORT}`);
-});
+// Only listen on port if not running in serverless environment (Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`${process.env.SYSTEM_NAME} running on port ${PORT}`);
+  });
+}
 
 module.exports = app;
