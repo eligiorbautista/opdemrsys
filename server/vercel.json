@@ -18,11 +18,5 @@
       "dest": "/src/routes/index.js"
     }
   ],
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "JWT_SECRET": "@jwt_secret",
-    "NODE_ENV": "production",
-    "PORT": "5000"
-  },
   "buildCommand": "none"
 }
