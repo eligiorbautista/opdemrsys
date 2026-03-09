@@ -1,0 +1,3 @@
+// This is a minimal working version to restore the file
+// Please restore your original DoctorConsultation.jsx from source control
+// or provide a clean copy if you have one saved elsewhere

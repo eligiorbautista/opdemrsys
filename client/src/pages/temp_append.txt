@@ -1,0 +1,424 @@
+const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPatients }) => {
+  const [formData, setFormData] = useState({
+    patientId: patient?.id || '',
+    visitId: '',
+    type: 'INITIAL',
+    subjective: '',
+    objective: '',
+    assessment: '',
+    plan: '',
+    diagnosis: '',
+    icd10Code: '',
+    diagnosisNotes: '',
+    treatmentPlan: '',
+    followUp: '',
+    instructions: '',
+    notes: '',
+    labOrders: [],
+    procedureOrders: [],
+    nursingOrders: [],
+    referralOrders: [],
+    followUpOrder: null
+  })
+
+  useEffect(() => {
+    if (consultation) {
+      setFormData({
+        patientId: consultation.patientId || '',
+        visitId: consultation.visitId || '',
+        type: consultation.type || 'INITIAL',
+        subjective: consultation.subjective || '',
+        objective: consultation.objective || '',
+        assessment: consultation.assessment || '',
+        plan: consultation.plan || '',
+        diagnosis: consultation.diagnosis || '',
+        icd10Code: consultation.icd10Code || '',
+        diagnosisNotes: consultation.diagnosisNotes || '',
+        treatmentPlan: consultation.treatmentPlan || '',
+        followUp: consultation.followUp ? new Date(consultation.followUp).toISOString().split('T')[0] : '',
+        instructions: consultation.instructions || '',
+        notes: consultation.notes || '',
+        labOrders: consultation.labOrders || [],
+        procedureOrders: consultation.procedureOrders || [],
+        nursingOrders: consultation.nursingOrders || [],
+        referralOrders: consultation.referralOrders || [],
+        followUpOrder: null
+      })
+    }
+  }, [consultation])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // Validation
+    if (!formData.patientId) {
+      toast.error('Patient is required')
+      return
+    }
+    if (!formData.subjective.trim()) {
+      toast.error('Subjective (chief complaint) is required')
+      return
+    }
+    if (!formData.diagnosis.trim()) {
+      toast.error('Diagnosis is required')
+      return
+    }
+    if (!formData.icd10Code.trim()) {
+      toast.error('ICD-10 Code is required')
+      return
+    }
+
+    onSubmit(formData)
+  }
+
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+  }
+
+  const addLabOrder = () => {
+    setFormData(prev => ({
+      ...prev,
+      labOrders: [...(prev.labOrders || []), { type: '', category: 'Laboratory', description: '', priority: 'ROUTINE', instructions: '' }]
+    }))
+  }
+
+  const updateLabOrder = (index, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      labOrders: prev.labOrders?.map((order, i) => i === index ? { ...order, [field]: value } : order) || []
+    }))
+  }
+
+  const removeLabOrder = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      labOrders: prev.labOrders?.filter((_, i) => i !== index) || []
+    }))
+  }
+
+  const addProcedureOrder = () => {
+    setFormData(prev => ({
+      ...prev,
+      procedureOrders: [...(prev.procedureOrders || []), { description: '', priority: 'ROUTINE', instructions: '' }]
+    }))
+  }
+
+  const updateProcedureOrder = (index, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      procedureOrders: prev.procedureOrders?.map((order, i) => i === index ? { ...order, [field]: value } : order) || []
+    }))
+  }
+
+  const removeProcedureOrder = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      procedureOrders: prev.procedureOrders?.filter((_, i) => i !== index) || []
+    }))
+  }
+
+  const addNursingOrder = () => {
+    setFormData(prev => ({
+      ...prev,
+      nursingOrders: [...(prev.nursingOrders || []), { type: '', frequency: 'Once', priority: 'ROUTINE', instructions: '' }]
+    }))
+  }
+
+  const updateNursingOrder = (index, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      nursingOrders: prev.nursingOrders?.map((order, i) => i === index ? { ...order, [field]: value } : order) || []
+    }))
+  }
+
+  const removeNursingOrder = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      nursingOrders: prev.nursingOrders?.filter((_, i) => i !== index) || []
+    }))
+  }
+
+  const addReferralOrder = () => {
+    setFormData(prev => ({
+      ...prev,
+      referralOrders: [...(prev.referralOrders || []), { referredTo: '', specialty: '', urgency: 'ROUTINE', reason: '', notes: '' }]
+    }))
+  }
+
+  const updateReferralOrder = (index, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      referralOrders: prev.referralOrders?.map((order, i) => i === index ? { ...order, [field]: value } : order) || []
+    }))
+  }
+
+  const removeReferralOrder = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      referralOrders: prev.referralOrders?.filter((_, i) => i !== index) || []
+    }))
+  }
+
+  return (
+    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="modal-content !max-w-4xl !w-[90vw] !max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header !py-2 !px-4">
+          <h2 className="text-base font-semibold text-slate-900">
+            {consultation ? 'Edit' : 'New'} Consultation
+          </h2>
+          <button onClick={onClose} className="p-1 hover:bg-slate-100 rounded-lg transition">
+            <FaTimes className="text-slate-500 text-sm" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-3 space-y-2 overflow-y-auto max-h-[calc(90vh-40px)]">
+          {/* Patient Info */}
+          <div className="bg-blue-50 rounded-lg p-2">
+            <p className="text-xs font-bold text-blue-700 mb-1">Patient Information</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <div className="col-span-2">
+                <label className="block text-xs font-medium text-slate-600 mb-1">Select Patient *</label>
+                <select
+                  value={formData.patientId}
+                  onChange={(e) => handleChange('patientId', e.target.value)}
+                  className="input text-xs py-1"
+                  required
+                >
+                  <option value="">Select a patient...</option>
+                  {allPatients?.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.firstName} {p.lastName} - {p.phone}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-600 mb-1">Type *</label>
+                <select
+                  value={formData.type}
+                  onChange={(e) => handleChange('type', e.target.value)}
+                  className="input text-xs py-1"
+                  required
+                >
+                  <option value="INITIAL">Initial</option>
+                  <option value="FOLLOW_UP">Follow-up</option>
+                  <option value="REFERRAL">Referral</option>
+                  <option value="EMERGENCY">Emergency</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* SOAP Notes */}
+          <div className="bg-purple-50 rounded-lg p-2">
+            <p className="text-[10px] font-bold text-purple-700 mb-1">SOAP Notes</p>
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Subjective (Chief Complaint) *</label>
+                <textarea
+                  value={formData.subjective}
+                  onChange={(e) => handleChange('subjective', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="2"
+                  placeholder="Patient's complaints..."
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Objective (Findings)</label>
+                <textarea
+                  value={formData.objective}
+                  onChange={(e) => handleChange('objective', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="2"
+                  placeholder="Physical examination findings..."
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Assessment</label>
+                <textarea
+                  value={formData.assessment}
+                  onChange={(e) => handleChange('assessment', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="2"
+                  placeholder="Clinical impression..."
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Plan (Treatment)</label>
+                <textarea
+                  value={formData.plan}
+                  onChange={(e) => handleChange('plan', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="2"
+                  placeholder="Treatment plan..."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Diagnosis & Coding */}
+          <div className="bg-emerald-50 rounded-lg p-2">
+            <p className="text-[10px] font-bold text-emerald-700 mb-1">Diagnosis & Coding</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              <div className="col-span-2">
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Primary Diagnosis *</label>
+                <input
+                  type="text"
+                  value={formData.diagnosis}
+                  onChange={(e) => handleChange('diagnosis', e.target.value)}
+                  className="input text-xs py-1"
+                  placeholder="e.g., Upper Respiratory Infection"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">ICD-10 Code *</label>
+                <input
+                  type="text"
+                  value={formData.icd10Code}
+                  onChange={(e) => handleChange('icd10Code', e.target.value)}
+                  className="input text-xs py-1"
+                  placeholder="e.g., J06.9"
+                  required
+                />
+              </div>
+              <div className="col-span-2 md:col-span-3">
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Diagnosis Notes</label>
+                <textarea
+                  value={formData.diagnosisNotes}
+                  onChange={(e) => handleChange('diagnosisNotes', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="1"
+                  placeholder="Additional diagnostic notes..."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Treatment & Follow-up */}
+          <div className="bg-amber-50 rounded-lg p-2">
+            <p className="text-[10px] font-bold text-amber-700 mb-1">Treatment & Follow-up</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <div>
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Follow-up Date</label>
+                <input
+                  type="date"
+                  value={formData.followUp}
+                  onChange={(e) => handleChange('followUp', e.target.value)}
+                  className="input text-xs py-1"
+                />
+              </div>
+              <div className="col-span-2 md:col-span-3">
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Treatment Plan Summary</label>
+                <input
+                  type="text"
+                  value={formData.treatmentPlan}
+                  onChange={(e) => handleChange('treatmentPlan', e.target.value)}
+                  className="input text-xs py-1"
+                  placeholder="Summary of treatment"
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Patient Instructions</label>
+                <textarea
+                  value={formData.instructions}
+                  onChange={(e) => handleChange('instructions', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="2"
+                  placeholder="Instructions for patient..."
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Provider Notes</label>
+                <textarea
+                  value={formData.notes}
+                  onChange={(e) => handleChange('notes', e.target.value)}
+                  className="input text-xs py-1"
+                  rows="1"
+                  placeholder="Additional notes..."
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Lab Orders */}
+          <div className="bg-slate-50 rounded-lg p-2">
+            <div className="flex items-center justify-between mb-2 px-1">
+              <p className="text-[10px] font-bold text-slate-700 uppercase tracking-wide">Lab Orders</p>
+              <button
+                type="button"
+                onClick={addLabOrder}
+                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+              >
+                <FaPlus className="text-[10px]" /> Add
+              </button>
+            </div>
+            {formData.labOrders?.map((order, index) => (
+              <div key={index} className="bg-white rounded p-2 mb-2 border border-slate-200">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-xs font-medium text-slate-600">Lab Order #{index + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => removeLabOrder(index)}
+                    className="text-xs text-red-600 hover:text-red-700"
+                  >
+                    <FaTimes />
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Type</label>
+                    <input
+                      type="text"
+                      value={order.type}
+                      onChange={(e) => updateLabOrder(index, 'type', e.target.value)}
+                      className="input text-xs py-1"
+                      placeholder="e.g., CBC, X-Ray"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Priority</label>
+                    <select
+                      value={order.priority}
+                      onChange={(e) => updateLabOrder(index, 'priority', e.target.value)}
+                      className="input text-xs py-1"
+                    >
+                      <option value="ROUTINE">Routine</option>
+                      <option value="URGENT">Urgent</option>
+                      <option value="STAT">STAT</option>
+                    </select>
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Description</label>
+                    <input
+                      type="text"
+                      value={order.description}
+                      onChange={(e) => updateLabOrder(index, 'description', e.target.value)}
+                      className="input text-xs py-1"
+                      placeholder="Description of lab test"
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Instructions</label>
+                    <input
+                      type="text"
+                      value={order.instructions}
+                      onChange={(e) => updateLabOrder(index, 'instructions', e.target.value)}
+                      className="input text-xs py-1"
+                      placeholder="Special instructions..."
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            {(!formData.labOrders || formData.labOrders.length === 0) && (
+              <div className="text-xs text-slate-400 italic text-center py-2">No lab orders added yet</div>
+            )}
+          </div>
+
+          {/* Procedure Orders */}
+          <div className="bg-orange-50 rounded-lg p-2">
+            <div className="flex items-center justify-between mb-2 px-1">
+              <p className="text-[10px] font-bold text-orange-700 uppercase tracking-wide">Procedures</p>
+              <button
