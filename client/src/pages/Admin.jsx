@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Toaster, toast } from 'sonner'
 import Dialog from '../components/ui/Dialog'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 import {
   FaUsers,
   FaPlus,
@@ -57,7 +59,7 @@ function Admin() {
   const loadCurrentUser = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('/api/auth/me', {
+      const response = await fetch(`${API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       const data = await response.json()
@@ -75,13 +77,13 @@ function Admin() {
       const token = localStorage.getItem('token')
       
       if (activeTab === 'users') {
-        const response = await fetch('/api/users', {
+        const response = await fetch(`${API_URL}/users`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         const data = await response.json()
         if (data.data) setUsers(data.data)
       } else if (activeTab === 'audit') {
-        const response = await fetch('/api/audit', {
+        const response = await fetch(`${API_URL}/audit`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         const data = await response.json()
@@ -685,7 +687,7 @@ function UserFormModal({ onClose, onSuccess }) {
         yearsExperience: formData.yearsExperience ? parseInt(formData.yearsExperience) : null
       }
 
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

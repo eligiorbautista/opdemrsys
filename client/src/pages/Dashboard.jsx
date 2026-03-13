@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { FaUsers, FaCalendarCheck, FaStethoscope, FaClock, FaSpinner, FaPlus, FaUserPlus, FaClipboardList, FaFileMedical, FaArrowRight } from 'react-icons/fa'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+
 function Dashboard() {
   const navigate = useNavigate()
   const [stats, setStats] = useState({
@@ -20,7 +22,7 @@ function Dashboard() {
     setLoading(true)
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('/api/reports/daily-summary', {
+      const response = await fetch(`${API_URL}/reports/daily-summary`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       const data = await response.json()

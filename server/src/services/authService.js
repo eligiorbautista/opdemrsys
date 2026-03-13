@@ -81,8 +81,12 @@ class AuthService {
       userData.specialization = specialization;
       userData.department = department;
       userData.licenseNumber = licenseNumber;
-      if (consultationFee) userData.consultationFee = parseFloat(consultationFee);
-      if (yearsExperience) userData.yearsExperience = parseInt(yearsExperience);
+      if (consultationFee !== undefined && consultationFee !== null && consultationFee !== '') {
+        userData.consultationFee = parseFloat(consultationFee);
+      }
+      if (yearsExperience !== undefined && yearsExperience !== null && yearsExperience !== '') {
+        userData.yearsExperience = parseInt(yearsExperience);
+      }
     }
 
     // Add nurse-specific fields

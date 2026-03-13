@@ -5,7 +5,7 @@ const { authenticate, optionalAuth, requireAdmin } = require('../middleware/auth
 const prisma = require('../config/database');
 const bcrypt = require('bcryptjs');
 
-router.post('/register', AuthController.registerRules, AuthController.register);
+router.post('/register', authenticate, requireAdmin, AuthController.registerRules, AuthController.register);
 
 router.post('/login', AuthController.loginRules, AuthController.login);
 
