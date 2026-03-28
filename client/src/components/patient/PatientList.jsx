@@ -54,7 +54,7 @@ function PatientList() {
   if (loading && patients.length === 0) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading patients...</div>
+        <div className="text-black">Loading patients...</div>
       </div>
     )
   }
@@ -74,7 +74,7 @@ function PatientList() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by name or phone..."
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="flex-1 px-4 py-2 border border-black rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
         <button 
           type="submit" 
@@ -91,7 +91,7 @@ function PatientList() {
       )}
 
       {!loading && patients.length === 0 ? (
-        <div className="bg-white p-8 rounded-lg shadow text-center text-gray-500">
+        <div className="bg-white p-8 rounded-lg shadow text-center text-black">
           No patients found
         </div>
       ) : (
@@ -99,30 +99,30 @@ function PatientList() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Phone</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Gender</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-black">
               {patients.map((patient) => (
                 <tr 
                   key={patient.id} 
-                  className="hover:bg-gray-50 cursor-pointer"
+                  className="hover:bg-slate-100 cursor-pointer"
                   onClick={() => handlePatientClick(patient.id)}
                 >
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                  <td className="px-6 py-4 text-sm text-black">
                     {patient.firstName} {patient.lastName}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-500">{patient.phone}</td>
-                  <td className="px-6 py-4 text-sm text-gray-500">{patient.gender}</td>
+                  <td className="px-6 py-4 text-sm text-black">{patient.phone}</td>
+                  <td className="px-6 py-4 text-sm text-black">{patient.gender}</td>
                   <td className="px-6 py-4 text-sm">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                       patient.status === 'ACTIVE' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-gray-100 text-gray-800'
+                        ? 'bg-green-100 text-black' 
+                        : 'bg-gray-100 text-black'
                     }`}>
                       {patient.status}
                     </span>

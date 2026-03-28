@@ -77,9 +77,17 @@ class OrderController {
     try {
       const { id } = req.params;
       const orders = await prisma.procedureOrder.findMany({
-        where: { patientId: id },
+        where: {
+          consultation: {
+            patientId: id
+          }
+        },
         include: {
-          visit: true
+          consultation: {
+            include: {
+              patient: true
+            }
+          }
         },
         orderBy: { createdAt: 'desc' }
       });

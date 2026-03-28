@@ -211,8 +211,8 @@ function DoctorConsultation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Total Consultations</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{consultations.length || 0}</p>
+              <p className="text-sm font-medium text-black">Total Consultations</p>
+              <p className="text-2xl font-bold text-black mt-1">{consultations.length || 0}</p>
             </div>
             <div className="stat-card-icon bg-blue-50 text-blue-600">
               <FaNotesMedical />
@@ -222,8 +222,8 @@ function DoctorConsultation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Pending</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Pending</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {consultations.filter(c => !c.isSigned).length || 0}
               </p>
             </div>
@@ -235,8 +235,8 @@ function DoctorConsultation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Signed</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Signed</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {consultations.filter(c => c.isSigned).length || 0}
               </p>
             </div>
@@ -248,8 +248,8 @@ function DoctorConsultation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Today</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Today</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {consultations.filter(c => {
                   const today = new Date().toDateString();
                   return c.createdAt && new Date(c.createdAt).toDateString() === today;
@@ -328,12 +328,12 @@ function DoctorConsultation() {
                   <tr key={consultation.id}>
                     <td>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-black">
                           <FaUser />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">{consultation.patient?.firstName} {consultation.patient?.lastName}</p>
-                          <p className="text-xs text-slate-500">{consultation.patient?.phone || 'No phone'}</p>
+                          <p className="font-medium text-black">{consultation.patient?.firstName} {consultation.patient?.lastName}</p>
+                          <p className="text-xs text-black">{consultation.patient?.phone || 'No phone'}</p>
                         </div>
                       </div>
                     </td>
@@ -350,7 +350,7 @@ function DoctorConsultation() {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => openDetailModal(consultation)}
-                          className="p-2 hover:bg-blue-50 rounded-lg text-slate-600 hover:text-blue-600 transition"
+                          className="p-2 hover:bg-blue-50 rounded-lg text-black hover:text-blue-600 transition"
                           title="View Details"
                         >
                           <FaEye />
@@ -358,7 +358,7 @@ function DoctorConsultation() {
                         {!consultation.isSigned && (
                           <button
                             onClick={() => openEditModal(consultation)}
-                            className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 hover:text-primary-600 transition"
+                            className="p-2 hover:bg-slate-100 rounded-lg text-black hover:text-primary-600 transition"
                             title="Edit"
                           >
                             <FaEdit />
@@ -367,7 +367,7 @@ function DoctorConsultation() {
                         {!consultation.isSigned && (
                           <button
                             onClick={() => handleSign(consultation.id)}
-                            className="p-2 hover:bg-emerald-50 rounded-lg text-slate-600 hover:text-emerald-600 transition"
+                            className="p-2 hover:bg-emerald-50 rounded-lg text-black hover:text-emerald-600 transition"
                             title="Sign"
                           >
                             <FaFileSignature />
@@ -375,7 +375,7 @@ function DoctorConsultation() {
                         )}
                         <button
                           onClick={() => openDeleteModal(consultation)}
-                          className="p-2 hover:bg-red-50 rounded-lg text-slate-600 hover:text-red-600 transition"
+                          className="p-2 hover:bg-red-50 rounded-lg text-black hover:text-red-600 transition"
                           title="Delete"
                         >
                           <FaTrash />
@@ -390,9 +390,9 @@ function DoctorConsultation() {
         ) : (
           <div className="text-center py-12">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FaStethoscope className="text-slate-400 text-2xl" />
+              <FaStethoscope className="text-black text-2xl" />
             </div>
-            <p className="text-slate-500">No consultations found</p>
+            <p className="text-black">No consultations found</p>
           </div>
         )}
       </div>
@@ -528,14 +528,14 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
   const removeReferralOrder = (index) => setFormData(prev => ({ ...prev, referralOrders: prev.referralOrders?.filter((_, i) => i !== index) || [] }))
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
       <div className="modal-content !max-w-4xl !w-[90vw] !max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header !py-2 !px-4">
-          <h2 className="text-base font-semibold text-slate-900">
+          <h2 className="text-base font-semibold text-black">
             {consultation ? 'Edit' : 'New'} Consultation
           </h2>
           <button onClick={onClose} className="p-1 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500 text-sm" />
+            <FaTimes className="text-black text-sm" />
           </button>
         </div>
 
@@ -545,7 +545,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             <p className="text-sm font-bold text-blue-700 mb-2">Patient Information</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="col-span-2">
-                <label className="block text-xs font-medium text-slate-600 mb-1">Select Patient *</label>
+                <label className="block text-xs font-medium text-black mb-1">Select Patient *</label>
                 <select
                   value={formData.patientId}
                   onChange={(e) => handleChange('patientId', e.target.value)}
@@ -561,7 +561,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Type *</label>
+                <label className="block text-xs font-medium text-black mb-1">Type *</label>
                 <select
                   value={formData.type}
                   onChange={(e) => handleChange('type', e.target.value)}
@@ -582,7 +582,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             <p className="text-sm font-bold text-purple-700 mb-2">SOAP Notes</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Subjective (Chief Complaint) *</label>
+                <label className="block text-xs font-medium text-black mb-1">Subjective (Chief Complaint) *</label>
                 <textarea
                   value={formData.subjective}
                   onChange={(e) => handleChange('subjective', e.target.value)}
@@ -593,7 +593,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Objective (Findings)</label>
+                <label className="block text-xs font-medium text-black mb-1">Objective (Findings)</label>
                 <textarea
                   value={formData.objective}
                   onChange={(e) => handleChange('objective', e.target.value)}
@@ -603,7 +603,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Assessment</label>
+                <label className="block text-xs font-medium text-black mb-1">Assessment</label>
                 <textarea
                   value={formData.assessment}
                   onChange={(e) => handleChange('assessment', e.target.value)}
@@ -613,7 +613,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Plan</label>
+                <label className="block text-xs font-medium text-black mb-1">Plan</label>
                 <textarea
                   value={formData.plan}
                   onChange={(e) => handleChange('plan', e.target.value)}
@@ -630,7 +630,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             <p className="text-sm font-bold text-green-700 mb-2">Diagnosis Information</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Diagnosis *</label>
+                <label className="block text-xs font-medium text-black mb-1">Diagnosis *</label>
                 <input
                   type="text"
                   value={formData.diagnosis}
@@ -641,7 +641,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">ICD-10 Code *</label>
+                <label className="block text-xs font-medium text-black mb-1">ICD-10 Code *</label>
                 <input
                   type="text"
                   value={formData.icd10Code}
@@ -661,7 +661,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               <button
                 type="button"
                 onClick={addLabOrder}
-                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -669,18 +669,18 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             {formData.labOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-yellow-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Lab Order #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Lab Order #{index + 1}</span>
                   <button type="button" onClick={() => removeLabOrder(index)} className="text-xs text-red-600 hover:text-red-700">
                     <FaTimes />
                   </button>
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Description</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Description</label>
                     <input type="text" value={order.description} onChange={(e) => updateLabOrder(index, 'description', e.target.value)} className="w-full border rounded px-2 py-1" placeholder="e.g. CBC, Lipid Profile" />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Priority</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Priority</label>
                     <select value={order.priority} onChange={(e) => updateLabOrder(index, 'priority', e.target.value)} className="w-full border rounded px-2 py-1">
                       <option value="ROUTINE">Routine</option>
                       <option value="URGENT">Urgent</option>
@@ -691,7 +691,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               </div>
             ))}
             {(!formData.labOrders || formData.labOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No lab orders added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No lab orders added yet</div>
             )}
           </div>
 
@@ -702,7 +702,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               <button
                 type="button"
                 onClick={addProcedureOrder}
-                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -710,7 +710,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             {formData.procedureOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-orange-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Procedure #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Procedure #{index + 1}</span>
                   <button
                     type="button"
                     onClick={() => removeProcedureOrder(index)}
@@ -721,7 +721,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Description</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Description</label>
                     <input
                       type="text"
                       value={order.description}
@@ -731,7 +731,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Priority</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Priority</label>
                     <select
                       value={order.priority}
                       onChange={(e) => updateProcedureOrder(index, 'priority', e.target.value)}
@@ -743,7 +743,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     </select>
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Instructions</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Instructions</label>
                     <input
                       type="text"
                       value={order.instructions}
@@ -756,7 +756,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               </div>
             ))}
             {(!formData.procedureOrders || formData.procedureOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No procedures added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No procedures added yet</div>
             )}
           </div>
 
@@ -767,7 +767,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               <button
                 type="button"
                 onClick={addNursingOrder}
-                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -775,7 +775,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             {formData.nursingOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-cyan-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Nursing Order #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Nursing Order #{index + 1}</span>
                   <button
                     type="button"
                     onClick={() => removeNursingOrder(index)}
@@ -786,7 +786,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Type</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Type</label>
                     <input
                       type="text"
                       value={order.type}
@@ -796,7 +796,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Frequency</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Frequency</label>
                     <select
                       value={order.frequency}
                       onChange={(e) => updateNursingOrder(index, 'frequency', e.target.value)}
@@ -811,7 +811,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Priority</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Priority</label>
                     <select
                       value={order.priority}
                       onChange={(e) => updateNursingOrder(index, 'priority', e.target.value)}
@@ -823,7 +823,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     </select>
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Instructions</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Instructions</label>
                     <input
                       type="text"
                       value={order.instructions}
@@ -836,7 +836,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               </div>
             ))}
             {(!formData.nursingOrders || formData.nursingOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No nursing orders added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No nursing orders added yet</div>
             )}
           </div>
 
@@ -847,7 +847,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               <button
                 type="button"
                 onClick={addReferralOrder}
-                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-xs bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -855,7 +855,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             {formData.referralOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-indigo-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Referral #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Referral #{index + 1}</span>
                   <button
                     type="button"
                     onClick={() => removeReferralOrder(index)}
@@ -866,7 +866,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Referred To</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Referred To</label>
                     <input
                       type="text"
                       value={order.referredTo}
@@ -876,7 +876,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Specialty</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Specialty</label>
                     <input
                       type="text"
                       value={order.specialty}
@@ -886,7 +886,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Urgency</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Urgency</label>
                     <select
                       value={order.urgency}
                       onChange={(e) => updateReferralOrder(index, 'urgency', e.target.value)}
@@ -898,7 +898,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Reason</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Reason</label>
                     <input
                       type="text"
                       value={order.reason}
@@ -908,7 +908,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                     />
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Notes</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Notes</label>
                     <input
                       type="text"
                       value={order.notes}
@@ -921,7 +921,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
               </div>
             ))}
             {(!formData.referralOrders || formData.referralOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No referrals added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No referrals added yet</div>
             )}
           </div>
 
@@ -941,16 +941,16 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
 
 const ConsultationDetailModal = ({ consultation, onClose }) => {
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center" onClick={onClose}>
       <div className="w-[95vw] h-[95vh] bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
           <div>
-            <h2 className="text-xl font-bold text-slate-900">Consultation Details</h2>
-            <p className="text-sm text-slate-500">Complete consultation information</p>
+            <h2 className="text-xl font-bold text-black">Consultation Details</h2>
+            <p className="text-sm text-black">Complete consultation information</p>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-slate-200 rounded-lg transition">
-            <FaTimes className="text-slate-500 text-lg" />
+            <FaTimes className="text-black text-lg" />
           </button>
         </div>
 
@@ -966,17 +966,17 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                 </p>
                 <div className="space-y-2 text-sm">
                   <div>
-                    <p className="font-medium text-slate-700">Name</p>
-                    <p className="text-slate-600">{consultation.patient?.firstName} {consultation.patient?.lastName}</p>
+                    <p className="font-medium text-black">Name</p>
+                    <p className="text-black">{consultation.patient?.firstName} {consultation.patient?.lastName}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-slate-700">Phone</p>
-                    <p className="text-slate-600">{consultation.patient?.phone || '--'}</p>
+                    <p className="font-medium text-black">Phone</p>
+                    <p className="text-black">{consultation.patient?.phone || '--'}</p>
                   </div>
                   {consultation.patient?.email && (
                     <div>
-                      <p className="font-medium text-slate-700">Email</p>
-                      <p className="text-slate-600">{consultation.patient.email}</p>
+                      <p className="font-medium text-black">Email</p>
+                      <p className="text-black">{consultation.patient.email}</p>
                     </div>
                   )}
                 </div>
@@ -984,19 +984,19 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
 
               {/* Consultation Details */}
               <div className="bg-slate-50 rounded-xl p-4">
-                <p className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-3">Consultation Details</p>
+                <p className="text-xs font-bold text-black uppercase tracking-wide mb-3">Consultation Details</p>
                 <div className="space-y-2 text-sm">
                   <div>
-                    <p className="font-medium text-slate-700">Type</p>
-                    <p className="text-slate-600">{consultation.type}</p>
+                    <p className="font-medium text-black">Type</p>
+                    <p className="text-black">{consultation.type}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-slate-700">Date</p>
-                    <p className="text-slate-600">{consultation.createdAt ? new Date(consultation.createdAt).toLocaleString() : '--'}</p>
+                    <p className="font-medium text-black">Date</p>
+                    <p className="text-black">{consultation.createdAt ? new Date(consultation.createdAt).toLocaleString() : '--'}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-slate-700">Status</p>
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${consultation.isSigned ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+                    <p className="font-medium text-black">Status</p>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${consultation.isSigned ? 'bg-emerald-100 text-black' : 'bg-amber-100 text-black'}`}>
                       {consultation.isSigned ? 'Signed' : 'Pending'}
                     </span>
                   </div>
@@ -1008,17 +1008,17 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                 <p className="text-xs font-bold text-green-700 uppercase tracking-wide mb-3">Diagnosis</p>
                 <div className="space-y-2 text-sm">
                   <div>
-                    <p className="font-medium text-slate-700">Primary Diagnosis</p>
-                    <p className="text-slate-600">{consultation.diagnosis}</p>
+                    <p className="font-medium text-black">Primary Diagnosis</p>
+                    <p className="text-black">{consultation.diagnosis}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-slate-700">ICD-10 Code</p>
-                    <p className="text-slate-600 bg-green-100 inline-block px-2 py-0.5 rounded">{consultation.icd10Code}</p>
+                    <p className="font-medium text-black">ICD-10 Code</p>
+                    <p className="text-black bg-green-100 inline-block px-2 py-0.5 rounded">{consultation.icd10Code}</p>
                   </div>
                   {consultation.diagnosisNotes && (
                     <div>
-                      <p className="font-medium text-slate-700">Notes</p>
-                      <p className="text-slate-600 text-xs">{consultation.diagnosisNotes}</p>
+                      <p className="font-medium text-black">Notes</p>
+                      <p className="text-black text-xs">{consultation.diagnosisNotes}</p>
                     </div>
                   )}
                 </div>
@@ -1030,7 +1030,7 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                   <p className="text-xs font-bold text-amber-700 uppercase tracking-wide mb-2 flex items-center gap-2">
                     <FaCalendar className="text-sm" /> Follow-up
                   </p>
-                  <p className="text-sm text-slate-700">Scheduled for: {new Date(consultation.followUp).toLocaleDateString()}</p>
+                  <p className="text-sm text-black">Scheduled for: {new Date(consultation.followUp).toLocaleDateString()}</p>
                 </div>
               )}
             </div>
@@ -1042,19 +1042,19 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                 <div className="space-y-4">
                   <div>
                     <p className="font-medium text-sm text-purple-800 mb-1">Subjective</p>
-                    <p className="text-sm text-slate-600 leading-relaxed">{consultation.subjective || '--'}</p>
+                    <p className="text-sm text-black leading-relaxed">{consultation.subjective || '--'}</p>
                   </div>
                   <div>
                     <p className="font-medium text-sm text-purple-800 mb-1">Objective</p>
-                    <p className="text-sm text-slate-600 leading-relaxed">{consultation.objective || '--'}</p>
+                    <p className="text-sm text-black leading-relaxed">{consultation.objective || '--'}</p>
                   </div>
                   <div>
                     <p className="font-medium text-sm text-purple-800 mb-1">Assessment</p>
-                    <p className="text-sm text-slate-600 leading-relaxed">{consultation.assessment || '--'}</p>
+                    <p className="text-sm text-black leading-relaxed">{consultation.assessment || '--'}</p>
                   </div>
                   <div>
                     <p className="font-medium text-sm text-purple-800 mb-1">Plan</p>
-                    <p className="text-sm text-slate-600 leading-relaxed">{consultation.plan || '--'}</p>
+                    <p className="text-sm text-black leading-relaxed">{consultation.plan || '--'}</p>
                   </div>
                 </div>
               </div>
@@ -1071,8 +1071,8 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                   <div className="space-y-3">
                     {consultation.visit.labOrders.map((order, idx) => (
                       <div key={idx} className="bg-white rounded-lg p-3 border border-yellow-200">
-                        <p className="font-medium text-sm text-slate-700">{order.description}</p>
-                        <div className="space-y-1 text-xs text-slate-500 mt-1">
+                        <p className="font-medium text-sm text-black">{order.description}</p>
+                        <div className="space-y-1 text-xs text-black mt-1">
                           {order.priority && <span>P: {order.priority}</span>}
                           {order.instructions && <span>• {order.instructions}</span>}
                         </div>
@@ -1091,8 +1091,8 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                   <div className="space-y-3">
                     {consultation.procedureOrders.map((order, idx) => (
                       <div key={idx} className="bg-white rounded-lg p-3 border border-orange-200">
-                        <p className="font-medium text-sm text-slate-700">{order.description}</p>
-                        <div className="space-y-1 text-xs text-slate-500 mt-1">
+                        <p className="font-medium text-sm text-black">{order.description}</p>
+                        <div className="space-y-1 text-xs text-black mt-1">
                           {order.priority && <span>P: {order.priority}</span>}
                           {order.instructions && <span>• {order.instructions}</span>}
                         </div>
@@ -1111,8 +1111,8 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                   <div className="space-y-3">
                     {consultation.visit.nursingOrders.map((order, idx) => (
                       <div key={idx} className="bg-white rounded-lg p-3 border border-cyan-200">
-                        <p className="font-medium text-sm text-slate-700">{order.type}</p>
-                        <div className="space-y-1 text-xs text-slate-500 mt-1">
+                        <p className="font-medium text-sm text-black">{order.type}</p>
+                        <div className="space-y-1 text-xs text-black mt-1">
                           {order.frequency && <span>F: {order.frequency}</span>}
                           {order.priority && <span>• P: {order.priority}</span>}
                           {order.instructions && <span>• {order.instructions}</span>}
@@ -1132,8 +1132,8 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                   <div className="space-y-3">
                     {consultation.visit.referralOrders.map((order, idx) => (
                       <div key={idx} className="bg-white rounded-lg p-3 border border-indigo-200">
-                        <p className="font-medium text-sm text-slate-700">{order.referredTo} - {order.specialty}</p>
-                        <div className="space-y-1 text-xs text-slate-500 mt-1">
+                        <p className="font-medium text-sm text-black">{order.referredTo} - {order.specialty}</p>
+                        <div className="space-y-1 text-xs text-black mt-1">
                           {order.urgency && <span>U: {order.urgency}</span>}
                           {order.reason && <span>• {order.reason}</span>}
                         </div>
@@ -1149,8 +1149,8 @@ const ConsultationDetailModal = ({ consultation, onClose }) => {
                (!consultation.visit?.nursingOrders || consultation.visit.nursingOrders.length === 0) &&
                (!consultation.visit?.referralOrders || consultation.visit.referralOrders.length === 0) && (
                 <div className="bg-slate-50 rounded-xl p-8 text-center">
-                  <FaNotesMedical className="text-4xl text-slate-300 mx-auto mb-3" />
-                  <p className="text-sm text-slate-500">No orders placed for this consultation</p>
+                  <FaNotesMedical className="text-4xl text-black mx-auto mb-3" />
+                  <p className="text-sm text-black">No orders placed for this consultation</p>
                 </div>
               )}
             </div>

@@ -1,4 +1,4 @@
-            <div className="text-xs text-slate-400 italic text-center py-2">No nursing orders added yet</div>
+            <div className="text-xs text-black italic text-center py-2">No nursing orders added yet</div>
             )}
           </div>
 

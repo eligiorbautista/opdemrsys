@@ -203,15 +203,15 @@ function DoctorConsultation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Total</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{consultations.length || 0}</p>
+              <p className="text-sm font-medium text-black">Total</p>
+              <p className="text-2xl font-bold text-black mt-1">{consultations.length || 0}</p>
             </div>
             <div className="stat-card-icon bg-blue-50 text-blue-600">
               <FaNotesMedical />
             </div>
             ))}
             {(!formData.labOrders || formData.labOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No lab orders added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No lab orders added yet</div>
             )}
           </div>
 
@@ -222,7 +222,7 @@ function DoctorConsultation() {
               <button
                 type="button"
                 onClick={addProcedureOrder}
-                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -230,7 +230,7 @@ function DoctorConsultation() {
             {formData.procedureOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-orange-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Procedure #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Procedure #{index + 1}</span>
                   <button
                     type="button"
                     onClick={() => removeProcedureOrder(index)}
@@ -241,7 +241,7 @@ function DoctorConsultation() {
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Description</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Description</label>
                     <input
                       type="text"
                       value={order.description}
@@ -251,7 +251,7 @@ function DoctorConsultation() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Priority</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Priority</label>
                     <select
                       value={order.priority}
                       onChange={(e) => updateProcedureOrder(index, 'priority', e.target.value)}
@@ -263,7 +263,7 @@ function DoctorConsultation() {
                     </select>
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Instructions</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Instructions</label>
                     <input
                       type="text"
                       value={order.instructions}
@@ -274,7 +274,7 @@ function DoctorConsultation() {
             </div>
             ))}
             {(!formData.procedureOrders || formData.procedureOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No procedures added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No procedures added yet</div>
             )}
           </div>
 
@@ -285,7 +285,7 @@ function DoctorConsultation() {
               <button
                 type="button"
                 onClick={addNursingOrder}
-                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -293,7 +293,7 @@ function DoctorConsultation() {
             {formData.nursingOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-cyan-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Nursing Order #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Nursing Order #{index + 1}</span>
                   <button
                     type="button"
                     onClick={() => removeNursingOrder(index)}
@@ -304,7 +304,7 @@ function DoctorConsultation() {
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Type</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Type</label>
                     <input
                       type="text"
                       value={order.type}
@@ -314,7 +314,7 @@ function DoctorConsultation() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Frequency</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Frequency</label>
                     <select
                       value={order.frequency}
                       onChange={(e) => updateNursingOrder(index, 'frequency', e.target.value)}
@@ -329,7 +329,7 @@ function DoctorConsultation() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Priority</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Priority</label>
                     <select
                       value={order.priority}
                       onChange={(e) => updateNursingOrder(index, 'priority', e.target.value)}
@@ -341,7 +341,7 @@ function DoctorConsultation() {
                     </select>
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Instructions</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Instructions</label>
                     <input
                       type="text"
                       value={order.instructions}
@@ -352,7 +352,7 @@ function DoctorConsultation() {
             </div>
             ))}
             {(!formData.nursingOrders || formData.nursingOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No nursing orders added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No nursing orders added yet</div>
             )}
           </div>
 
@@ -363,7 +363,7 @@ function DoctorConsultation() {
               <button
                 type="button"
                 onClick={addReferralOrder}
-                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-slate-600 transition"
+                className="text-[10px] bg-white border border-slate-300 hover:bg-slate-50 px-2 py-1 rounded flex items-center gap-1 text-black transition"
               >
                 <FaPlus className="text-[10px]" /> Add
               </button>
@@ -371,7 +371,7 @@ function DoctorConsultation() {
             {formData.referralOrders?.map((order, index) => (
               <div key={index} className="bg-white rounded p-2 mb-2 border border-indigo-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-medium text-slate-600">Referral #{index + 1}</span>
+                  <span className="text-xs font-medium text-black">Referral #{index + 1}</span>
                   <button
                     type="button"
                     onClick={() => removeReferralOrder(index)}
@@ -382,7 +382,7 @@ function DoctorConsultation() {
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Referred To</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Referred To</label>
                     <input
                       type="text"
                       value={order.referredTo}
@@ -392,7 +392,7 @@ function DoctorConsultation() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Specialty</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Specialty</label>
                     <input
                       type="text"
                       value={order.specialty}
@@ -402,7 +402,7 @@ function DoctorConsultation() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Urgency</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Urgency</label>
                     <select
                       value={order.urgency}
                       onChange={(e) => updateReferralOrder(index, 'urgency', e.target.value)}
@@ -414,7 +414,7 @@ function DoctorConsultation() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Reason</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Reason</label>
                     <input
                       type="text"
                       value={order.reason}
@@ -424,7 +424,7 @@ function DoctorConsultation() {
                     />
                   </div>
                   <div className="col-span-2">
-                    <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Notes</label>
+                    <label className="block text-[10px] font-medium text-black mb-0.5">Notes</label>
                     <input
                       type="text"
                       value={order.notes}
@@ -435,7 +435,7 @@ function DoctorConsultation() {
                   </div>
             ))}
             {(!formData.referralOrders || formData.referralOrders.length === 0) && (
-              <div className="text-xs text-slate-400 italic text-center py-2">No referrals added yet</div>
+              <div className="text-xs text-black italic text-center py-2">No referrals added yet</div>
             )}
           </div>
 
@@ -619,11 +619,11 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
       <div className="modal-content !max-w-4xl !w-[90vw] !max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header !py-2 !px-4">
-          <h2 className="text-base font-semibold text-slate-900">
+          <h2 className="text-base font-semibold text-black">
             {consultation ? 'Edit' : 'New'} Consultation
           </h2>
           <button onClick={onClose} className="p-1 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500 text-sm" />
+            <FaTimes className="text-black text-sm" />
           </button>
         </div>
 
@@ -633,7 +633,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             <p className="text-xs font-bold text-blue-700 mb-1">Patient Information</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div className="col-span-2">
-                <label className="block text-xs font-medium text-slate-600 mb-1">Select Patient *</label>
+                <label className="block text-xs font-medium text-black mb-1">Select Patient *</label>
                 <select
                   value={formData.patientId}
                   onChange={(e) => handleChange('patientId', e.target.value)}
@@ -649,7 +649,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 mb-1">Type *</label>
+                <label className="block text-xs font-medium text-black mb-1">Type *</label>
                 <select
                   value={formData.type}
                   onChange={(e) => handleChange('type', e.target.value)}
@@ -670,7 +670,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
             <p className="text-[10px] font-bold text-purple-700 mb-1">SOAP Notes</p>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Subjective (Chief Complaint) *</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Subjective (Chief Complaint) *</label>
                 <textarea
                   value={formData.subjective}
                   onChange={(e) => handleChange('subjective', e.target.value)}
@@ -681,7 +681,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Objective (Findings)</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Objective (Findings)</label>
                 <textarea
                   value={formData.objective}
                   onChange={(e) => handleChange('objective', e.target.value)}
@@ -691,7 +691,7 @@ const ConsultationFormModal = ({ patient, consultation, onClose, onSubmit, allPa
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Assessment</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Assessment</label>
                 <textarea
                   value={formData.assessment}
                   onChange={(e) => handleChange('assessment', e.target.value)}

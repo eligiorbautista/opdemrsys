@@ -12,7 +12,8 @@ import {
   FaExclamationTriangle,
   FaUser,
   FaSearch,
-  FaPhone
+  FaPhone,
+  FaDesktop
 } from 'react-icons/fa'
 import patientService from '../services/patientService'
 import queueService from '../services/queueService'
@@ -112,10 +113,20 @@ function Queue() {
             <h1 className="page-title">OPD Queue</h1>
             <p className="page-subtitle">Patient queue with priority-based ordering</p>
           </div>
-          <button onClick={() => setShowAddModal(true)} className="btn-primary">
-            <FaPlus />
-            Add to Queue
-          </button>
+          <div className="flex gap-3">
+            <button 
+              onClick={() => window.open('/display', '_blank', 'width=1200,height=800')}
+              className="btn-secondary"
+              title="Open Public Display"
+            >
+              <FaDesktop />
+              Display
+            </button>
+            <button onClick={() => setShowAddModal(true)} className="btn-primary">
+              <FaPlus />
+              Add to Queue
+            </button>
+          </div>
         </div>
       </div>
 
@@ -124,8 +135,8 @@ function Queue() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Waiting</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{waitingCount}</p>
+              <p className="text-sm font-medium text-black">Waiting</p>
+              <p className="text-2xl font-bold text-black mt-1">{waitingCount}</p>
             </div>
             <div className="stat-card-icon bg-amber-50 text-amber-600">
               <FaHourglass />
@@ -135,8 +146,8 @@ function Queue() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">In Progress</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{inProgressCount}</p>
+              <p className="text-sm font-medium text-black">In Progress</p>
+              <p className="text-2xl font-bold text-black mt-1">{inProgressCount}</p>
             </div>
             <div className="stat-card-icon bg-blue-50 text-blue-600">
               <FaHourglassHalf />
@@ -146,8 +157,8 @@ function Queue() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Completed</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{completedCount}</p>
+              <p className="text-sm font-medium text-black">Completed</p>
+              <p className="text-2xl font-bold text-black mt-1">{completedCount}</p>
             </div>
             <div className="stat-card-icon bg-emerald-50 text-emerald-600">
               <FaCheckCircle />
@@ -157,8 +168,8 @@ function Queue() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Emergency</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Emergency</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {queue.filter(e => e.priority >= 2 || e.triageLevel === 'EMERGENCY').length}
               </p>
             </div>
@@ -198,7 +209,7 @@ function Queue() {
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                         entry.priority >= 2 ? 'bg-red-100 text-red-700' :
                         entry.priority === 1 ? 'bg-amber-100 text-amber-700' :
-                        'bg-slate-100 text-slate-700'
+                        'bg-slate-100 text-black'
                       }`}>
                         {entry.position || index + 1}
                       </div>
@@ -209,8 +220,8 @@ function Queue() {
                           <FaUser />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">{entry.patient?.firstName} {entry.patient?.lastName}</p>
-                          <p className="text-xs text-slate-500">{entry.patient?.phone}</p>
+                          <p className="font-medium text-black">{entry.patient?.firstName} {entry.patient?.lastName}</p>
+                          <p className="text-xs text-black">{entry.patient?.phone}</p>
                         </div>
                       </div>
                     </td>
@@ -229,7 +240,7 @@ function Queue() {
                       <span className={`text-xs ${
                         entry.priority >= 2 ? 'text-red-700' :
                         entry.priority === 1 ? 'text-amber-700' :
-                        'text-slate-700'
+                        'text-black'
                       }`}>
                         Priority {entry.priority}
                       </span>
@@ -240,7 +251,7 @@ function Queue() {
                         {entry.status === 'IN_PROGRESS' && (
                           <button
                             onClick={() => handleComplete(entry.id)}
-                            className="p-2 hover:bg-emerald-50 rounded-lg text-slate-600 hover:text-emerald-600 transition"
+                            className="p-2 hover:bg-emerald-50 rounded-lg text-black hover:text-emerald-600 transition"
                             title="Mark Complete"
                           >
                             <FaCheckCircle />
@@ -249,7 +260,7 @@ function Queue() {
                         {entry.status === 'WAITING' && (
                           <button
                             onClick={() => handleSkip(entry.id)}
-                            className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 hover:text-primary-600 transition"
+                            className="p-2 hover:bg-slate-100 rounded-lg text-black hover:text-primary-600 transition"
                             title="Skip"
                           >
                             <FaTimes />
@@ -265,17 +276,17 @@ function Queue() {
         ) : (
           <div className="p-6 text-center">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FaHourglass className="text-slate-400 text-2xl" />
+              <FaHourglass className="text-black text-2xl" />
             </div>
-            <p className="text-slate-500">Queue is empty</p>
-            <p className="text-sm text-slate-400 mt-1">Add patients to get started</p>
+            <p className="text-black">Queue is empty</p>
+            <p className="text-sm text-black mt-1">Add patients to get started</p>
           </div>
         )}
       </div>
 
       {/* Triage Guidelines */}
       <div className="card p-4">
-        <h3 className="text-sm font-semibold text-slate-700 mb-3">Triage Priority Guidelines</h3>
+        <h3 className="text-sm font-semibold text-black mb-3">Triage Priority Guidelines</h3>
         <div className="grid sm:grid-cols-3 gap-4">
           <div className="flex items-center gap-3 p-3 rounded-lg bg-red-50 border border-red-200">
             <FaExclamationTriangle className="text-red-600" />
@@ -368,16 +379,16 @@ function AddToQueueModal({ patients, onClose, onSuccess }) {
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
       <div className="modal-content !max-w-lg !w-[90vw]" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header !py-2 !px-4">
-          <h2 className="text-base font-semibold text-slate-900">Add to Queue</h2>
+          <h2 className="text-base font-semibold text-black">Add to Queue</h2>
           <button onClick={onClose} className="p-1 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500 text-sm" />
+            <FaTimes className="text-black text-sm" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-3 space-y-2">
           <div className="bg-slate-100 rounded-lg p-2">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">Search Patient</label>
+              <label className="block text-xs font-medium text-black mb-1">Search Patient</label>
               <div className="input-group flex-1">
                 <FaSearch className="input-group-icon" />
                 <input
@@ -392,8 +403,8 @@ function AddToQueueModal({ patients, onClose, onSuccess }) {
 
             {selectedPatient && (
               <div className="mt-2 p-2 bg-primary-50 rounded-lg border border-primary-200">
-                <p className="text-sm font-medium text-slate-900">{selectedPatient.firstName} {selectedPatient.lastName}</p>
-                <p className="text-xs text-slate-500">{selectedPatient.phone}</p>
+                <p className="text-sm font-medium text-black">{selectedPatient.firstName} {selectedPatient.lastName}</p>
+                <p className="text-xs text-black">{selectedPatient.phone}</p>
               </div>
             )}
 
@@ -409,8 +420,8 @@ function AddToQueueModal({ patients, onClose, onSuccess }) {
                     }}
                     className="w-full text-left p-2 hover:bg-slate-50 border-b border-slate-100 last:border-0 text-xs"
                   >
-                    <p className="font-medium text-slate-900">{patient.firstName} {patient.lastName}</p>
-                    <p className="text-slate-500">{patient.phone}</p>
+                    <p className="font-medium text-black">{patient.firstName} {patient.lastName}</p>
+                    <p className="text-black">{patient.phone}</p>
                   </button>
                 ))}
               </div>
@@ -419,7 +430,7 @@ function AddToQueueModal({ patients, onClose, onSuccess }) {
 
           <div className="bg-slate-100 rounded-lg p-2">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">Triage Priority</label>
+              <label className="block text-xs font-medium text-black mb-1">Triage Priority</label>
               <select
                 value={triageLevel}
                 onChange={(e) => setTriageLevel(e.target.value)}
@@ -434,7 +445,7 @@ function AddToQueueModal({ patients, onClose, onSuccess }) {
 
           <div className="bg-slate-100 rounded-lg p-2">
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">Notes / Chief Complaint</label>
+              <label className="block text-xs font-medium text-black mb-1">Notes / Chief Complaint</label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}

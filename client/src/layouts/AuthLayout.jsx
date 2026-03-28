@@ -17,7 +17,7 @@ function AuthLayout() {
             <FaHeartbeat className="text-white text-2xl" />
           </div>
           <h1 className="text-2xl font-bold text-white">OPD EMR</h1>
-          <p className="text-slate-300 mt-1">Out-Patient Department EMR System</p>
+          <p className="text-white mt-1">Out-Patient Department EMR System</p>
         </div>
         <div className="card p-8 bg-white/95 backdrop-blur-sm shadow-xl">
           <Outlet />

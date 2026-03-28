@@ -105,8 +105,8 @@ function NurseDocumentation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Total Documentation</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{documentations?.length || 0}</p>
+              <p className="text-sm font-medium text-black">Total Documentation</p>
+              <p className="text-2xl font-bold text-black mt-1">{documentations?.length || 0}</p>
             </div>
             <div className="stat-card-icon bg-blue-50 text-blue-600">
               <FaFileMedical />
@@ -116,8 +116,8 @@ function NurseDocumentation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Emergency</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{documentations?.filter(d => d.triageLevel === 'EMERGENCY').length || 0}</p>
+              <p className="text-sm font-medium text-black">Emergency</p>
+              <p className="text-2xl font-bold text-black mt-1">{documentations?.filter(d => d.triageLevel === 'EMERGENCY').length || 0}</p>
             </div>
             <div className="stat-card-icon bg-red-50 text-red-600">
               <FaExclamationTriangle />
@@ -127,8 +127,8 @@ function NurseDocumentation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Fall Risk</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{documentations?.filter(d => d.fallRisk).length || 0}</p>
+              <p className="text-sm font-medium text-black">Fall Risk</p>
+              <p className="text-2xl font-bold text-black mt-1">{documentations?.filter(d => d.fallRisk).length || 0}</p>
             </div>
             <div className="stat-card-icon bg-orange-50 text-orange-600">
               <FaProcedures />
@@ -138,8 +138,8 @@ function NurseDocumentation() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Completed Today</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{documentations?.filter(d => new Date(d.createdAt).toDateString() === new Date().toDateString()).length || 0}</p>
+              <p className="text-sm font-medium text-black">Completed Today</p>
+              <p className="text-2xl font-bold text-black mt-1">{documentations?.filter(d => new Date(d.createdAt).toDateString() === new Date().toDateString()).length || 0}</p>
             </div>
             <div className="stat-card-icon bg-emerald-50 text-emerald-600">
               <FaCheckCircle />
@@ -173,12 +173,12 @@ function NurseDocumentation() {
                   <tr key={doc.id}>
                     <td>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-black">
                           <FaUser />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">{doc.patient?.firstName} {doc.patient?.lastName}</p>
-                          <p className="text-xs text-slate-500">{doc.patient?.phone || 'No phone'}</p>
+                          <p className="font-medium text-black">{doc.patient?.firstName} {doc.patient?.lastName}</p>
+                          <p className="text-xs text-black">{doc.patient?.phone || 'No phone'}</p>
                         </div>
                       </div>
                     </td>
@@ -186,7 +186,7 @@ function NurseDocumentation() {
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                         doc.triageLevel === 'EMERGENCY' ? 'bg-red-100 text-red-800' :
                         doc.triageLevel === 'URGENT' ? 'bg-amber-100 text-amber-800' :
-                        'bg-slate-100 text-slate-800'
+                        'bg-slate-100 text-black'
                       }`}>
                         {doc.triageLevel}
                       </span>
@@ -209,7 +209,7 @@ function NurseDocumentation() {
                     </td>
                     <td className="text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <button onClick={() => openModal(doc)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 hover:text-primary-600 transition" title="View/Edit">
+                        <button onClick={() => openModal(doc)} className="p-2 hover:bg-slate-100 rounded-lg text-black hover:text-primary-600 transition" title="View/Edit">
                           <FaClipboardList />
                         </button>
                       </div>
@@ -222,9 +222,9 @@ function NurseDocumentation() {
         ) : (
           <div className="text-center py-12">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FaUserNurse className="text-slate-400 text-2xl" />
+              <FaUserNurse className="text-black text-2xl" />
             </div>
-            <p className="text-slate-500">No documentation found</p>
+            <p className="text-black">No documentation found</p>
           </div>
         )}
       </div>
@@ -329,16 +329,16 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
       <div className="modal-content !max-w-4xl !w-[90vw]" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header !py-2 !px-4">
-          <h2 className="text-base font-semibold text-slate-900">Triage Documentation</h2>
+          <h2 className="text-base font-semibold text-black">Triage Documentation</h2>
           <button onClick={onClose} className="p-1 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500 text-sm" />
+            <FaTimes className="text-black text-sm" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-3 space-y-2 max-h-[80vh] overflow-y-auto">
           {/* Patient Info */}
           <div className="bg-slate-100 rounded-lg p-2">
-            <label className="block text-[10px] font-medium text-slate-700 mb-1">Patient</label>
+            <label className="block text-[10px] font-medium text-black mb-1">Patient</label>
             <select value={formData.patientId} onChange={(e) => handleChange('patientId', e.target.value)} className="input text-xs py-1">
               <option value="">Select a patient...</option>
               {allPatients.map(p => (
@@ -349,8 +349,8 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
             </select>
             {documentation?.patient && (
               <div className="mt-2 text-sm">
-                <p className="font-semibold text-slate-900">{documentation.patient.firstName} {documentation.patient.lastName}</p>
-                <p className="text-xs text-slate-500">DOB: {documentation.patient.dateOfBirth ? new Date(documentation.patient.dateOfBirth).toLocaleDateString() : 'Unknown'} | {documentation.patient.gender || ''}</p>
+<p className="font-semibold text-black">{documentation.patient.firstName} {documentation.patient.lastName}</p>
+              <p className="text-xs text-black">DOB: {documentation.patient.dateOfBirth ? new Date(documentation.patient.dateOfBirth).toLocaleDateString() : 'Unknown'} | {documentation.patient.gender || ''}</p>
               </div>
             )}
           </div>
@@ -359,7 +359,7 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
           <div className="bg-slate-100 rounded-lg p-2">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
-                <label className="block text-[10px] font-medium text-slate-700 mb-0.5">Triage Level</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Triage Level</label>
                 <select value={formData.triageLevel} onChange={(e) => handleChange('triageLevel', e.target.value)} className="input text-xs py-1">
                   <option value="ROUTINE">Routine (Green)</option>
                   <option value="URGENT">Urgent (Yellow)</option>
@@ -367,7 +367,7 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
                 </select>
               </div>
               <div className="col-span-2 md:col-span-3">
-                <label className="block text-[10px] font-medium text-slate-700 mb-0.5">Chief Complaint <span className="text-red-500">*</span></label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Chief Complaint <span className="text-red-500">*</span></label>
                 <input type="text" value={formData.chiefComplaint} onChange={(e) => handleChange('chiefComplaint', e.target.value)} className="input text-xs py-1" placeholder="Reason for visit..." required />
               </div>
             </div>
@@ -375,30 +375,30 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
 
           {/* Vital Signs */}
           <div className="bg-slate-100 rounded-lg p-2">
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wide mb-1">Vital Signs</p>
+            <p className="text-[10px] font-bold text-black uppercase tracking-wide mb-1">Vital Signs</p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Temp (°C)</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Temp (°C)</label>
                 <input type="number" step="0.1" value={formData.temperature} onChange={(e) => handleChange('temperature', e.target.value)} className="input text-xs py-1" placeholder="36.5" />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">BP (mmHg)</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">BP (mmHg)</label>
                 <input type="text" value={formData.bloodPressure} onChange={(e) => handleChange('bloodPressure', e.target.value)} className="input text-xs py-1" placeholder="120/80" />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">HR</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">HR</label>
                 <input type="number" value={formData.heartRate} onChange={(e) => handleChange('heartRate', e.target.value)} className="input text-xs py-1" placeholder="72" />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">RR</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">RR</label>
                 <input type="number" value={formData.respiratoryRate} onChange={(e) => handleChange('respiratoryRate', e.target.value)} className="input text-xs py-1" placeholder="16" />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">SpO2 (%)</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">SpO2 (%)</label>
                 <input type="number" value={formData.spo2} onChange={(e) => handleChange('spo2', e.target.value)} className="input text-xs py-1" placeholder="98" />
               </div>
               <div>
-                <label className="block text-[10px] font-medium text-slate-600 mb-0.5">Pain (0-10)</label>
+                <label className="block text-[10px] font-medium text-black mb-0.5">Pain (0-10)</label>
                 <input type="range" min="0" max="10" value={formData.painScale || 0} onChange={(e) => handleChange('painScale', e.target.value)} className="w-full h-1.5 bg-slate-200 rounded appearance-none accent-primary-600" />
                 <p className={`text-xs text-center font-medium ${formData.painScale > 7 ? 'text-red-500' : formData.painScale > 4 ? 'text-amber-500' : 'text-emerald-500'}`}>{formData.painScale || 0}</p>
               </div>
@@ -407,20 +407,20 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
 
           {/* Safety Assessment */}
           <div className="bg-slate-100 rounded-lg p-2">
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wide mb-1">Safety Assessment</p>
+            <p className="text-[10px] font-bold text-black uppercase tracking-wide mb-1">Safety Assessment</p>
             <div className="grid grid-cols-2 gap-2">
               <label className="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
                 <input type="checkbox" checked={formData.fallRisk} onChange={(e) => handleChange('fallRisk', e.target.checked)} className="w-4 h-4 text-primary-600" />
                 <div>
-                  <p className="text-xs font-medium text-slate-900">Fall Risk</p>
-                  <p className="text-[10px] text-slate-500">At risk for falls</p>
+                  <p className="text-xs font-medium text-black">Fall Risk</p>
+                  <p className="text-[10px] text-black">At risk for falls</p>
                 </div>
               </label>
               <label className="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
                 <input type="checkbox" checked={formData.isolationRequired} onChange={(e) => handleChange('isolationRequired', e.target.checked)} className="w-4 h-4 text-primary-600" />
                 <div>
-                  <p className="text-xs font-medium text-slate-900">Isolation Required</p>
-                  <p className="text-[10px] text-slate-500">Infection control</p>
+                  <p className="text-xs font-medium text-black">Isolation Required</p>
+                  <p className="text-[10px] text-black">Infection control</p>
                 </div>
               </label>
             </div>
@@ -434,12 +434,12 @@ function NurseFormModal({ patient, documentation, onClose, onSubmit, allPatients
 
           {/* Nursing Assessment & Notes */}
           <div className="bg-slate-100 rounded-lg p-2">
-            <label className="block text-[10px] font-medium text-slate-700 mb-0.5">Nursing Assessment</label>
+            <label className="block text-[10px] font-medium text-black mb-0.5">Nursing Assessment</label>
             <textarea value={formData.assessment} onChange={(e) => handleChange('assessment', e.target.value)} className="input text-xs py-1" rows="2" placeholder="Clinical observations..." />
           </div>
 
           <div className="bg-slate-100 rounded-lg p-2">
-            <label className="block text-[10px] font-medium text-slate-700 mb-0.5">Additional Notes</label>
+            <label className="block text-[10px] font-medium text-black mb-0.5">Additional Notes</label>
             <textarea value={formData.notes} onChange={(e) => handleChange('notes', e.target.value)} className="input text-xs py-1" rows="1" placeholder="Any additional notes..." />
           </div>
 

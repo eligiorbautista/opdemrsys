@@ -241,8 +241,8 @@ function Admin() {
         <div className="card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Total Users</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{users.length}</p>
+              <p className="text-sm font-medium text-black">Total Users</p>
+              <p className="text-2xl font-bold text-black mt-1">{users.length}</p>
             </div>
             <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
               <FaUsers />
@@ -252,8 +252,8 @@ function Admin() {
         <div className="card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Doctors</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Doctors</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {users.filter(u => u.role === 'DOCTOR').length}
               </p>
             </div>
@@ -265,8 +265,8 @@ function Admin() {
         <div className="card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Nurses</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Nurses</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {users.filter(u => u.role === 'NURSE').length}
               </p>
             </div>
@@ -278,8 +278,8 @@ function Admin() {
         <div className="card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Audit Logs</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{auditLogs.length}</p>
+              <p className="text-sm font-medium text-black">Audit Logs</p>
+              <p className="text-2xl font-bold text-black mt-1">{auditLogs.length}</p>
             </div>
             <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600">
               <FaShieldAlt />
@@ -289,7 +289,7 @@ function Admin() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-slate-200">
+      <div className="border-b border-black">
         <nav className="flex gap-4 -mb-px">
           {tabs.map(tab => (
             <button
@@ -298,7 +298,7 @@ function Admin() {
               className={`flex items-center gap-2 px-4 py-3 border-b-2 text-sm font-medium transition-colors ${
                 activeTab === tab.id
                   ? 'border-primary-600 text-primary-600'
-                  : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
+                  : 'border-transparent text-black hover:text-black hover:border-black'
               }`}
             >
               <tab.icon />
@@ -420,9 +420,9 @@ function UsersTab({ users, loading, search, setSearch, filter, setFilter, onAddU
         </div>
       </div>
 
-      <div className="p-4 border-b border-slate-100">
+      <div className="p-4 border-b border-black">
         <div className="relative max-w-md">
-          <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-black" />
           <input
             type="text"
             value={search}
@@ -455,13 +455,13 @@ function UsersTab({ users, loading, search, setSearch, filter, setFilter, onAddU
                 <tr key={user.id}>
                   <td>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                      <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-black">
                         {user.role === 'DOCTOR' ? <FaUserMd /> : 
                          user.role === 'NURSE' ? <FaUserNurse /> : <FaUser />}
                       </div>
                       <div>
-                        <p className="font-medium text-slate-900">{user.firstName} {user.lastName}</p>
-                        <p className="text-sm text-slate-500">{user.email}</p>
+                        <p className="font-medium text-black">{user.firstName} {user.lastName}</p>
+                        <p className="text-sm text-black">{user.email}</p>
                       </div>
                     </div>
                   </td>
@@ -477,29 +477,29 @@ function UsersTab({ users, loading, search, setSearch, filter, setFilter, onAddU
                   <td>
                     {user.role === 'DOCTOR' && (
                       <div>
-                        <p className="text-slate-900">{user.specialization || 'General'}</p>
-                        {user.department && <p className="text-sm text-slate-500">{user.department}</p>}
+                        <p className="text-black">{user.specialization || 'General'}</p>
+                        {user.department && <p className="text-sm text-black">{user.department}</p>}
                       </div>
                     )}
                     {user.role === 'NURSE' && (
                       <div>
-                        <p className="text-slate-900">{user.certificationLevel || 'RN'}</p>
-                        {user.department && <p className="text-sm text-slate-500">{user.department}</p>}
+                        <p className="text-black">{user.certificationLevel || 'RN'}</p>
+                        {user.department && <p className="text-sm text-black">{user.department}</p>}
                       </div>
                     )}
                     {user.role === 'ADMIN' && (
                       <div>
-                        <p className="text-slate-900">System</p>
-                        <p className="text-sm text-slate-500">Administration</p>
+                        <p className="text-black">System</p>
+                        <p className="text-sm text-black">Administration</p>
                       </div>
                     )}
                     {user.role === 'STUDENT' && (
                       <div>
-                        <p className="text-slate-900">{user.specialization || 'Student'}</p>
-                        <p className="text-sm text-slate-500">{user.department || 'Clinical Training'}</p>
+                        <p className="text-black">{user.specialization || 'Student'}</p>
+                        <p className="text-sm text-black">{user.department || 'Clinical Training'}</p>
                       </div>
                     )}
-                    {!user.role.match(/DOCTOR|NURSE|ADMIN|STUDENT/) && <span className="text-slate-400">--</span>}
+                    {!user.role.match(/DOCTOR|NURSE|ADMIN|STUDENT/) && <span className="text-black">--</span>}
                   </td>
                   <td>
                     <span className={`badge ${user.isActive ? 'badge-success' : 'badge-warning'}`}>
@@ -509,19 +509,19 @@ function UsersTab({ users, loading, search, setSearch, filter, setFilter, onAddU
                   <td>{user.createdAt ? new Date(user.createdAt).toLocaleDateString() : '--'}</td>
                   <td className="text-right">
                     <div className="flex items-center justify-end gap-1">
-                      <button onClick={() => onView(user)} className="p-2 hover:bg-blue-50 rounded-lg text-slate-600 hover:text-blue-600 transition" title="View">
+                      <button onClick={() => onView(user)} className="p-2 hover:bg-blue-50 rounded-lg text-black hover:text-blue-600 transition" title="View">
                         <FaEye />
                       </button>
-                      <button onClick={() => onEdit(user)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 hover:text-primary-600 transition" title="Edit">
+                      <button onClick={() => onEdit(user)} className="p-2 hover:bg-slate-100 rounded-lg text-black hover:text-primary-600 transition" title="Edit">
                         <FaEdit />
                       </button>
                       {currentUser?.id !== user.id && (
                         user.isActive ? (
-                          <button onClick={() => onDeactivate(user)} className="p-2 hover:bg-red-50 rounded-lg text-slate-600 hover:text-red-600 transition" title="Deactivate">
+                          <button onClick={() => onDeactivate(user)} className="p-2 hover:bg-red-50 rounded-lg text-black hover:text-red-600 transition" title="Deactivate">
                             <FaLock />
                           </button>
                         ) : (
-                          <button onClick={() => onActivate(user)} className="p-2 hover:bg-emerald-50 rounded-lg text-slate-600 hover:text-emerald-600 transition" title="Activate">
+                          <button onClick={() => onActivate(user)} className="p-2 hover:bg-emerald-50 rounded-lg text-black hover:text-emerald-600 transition" title="Activate">
                             <FaCheck />
                           </button>
                         )
@@ -536,9 +536,9 @@ function UsersTab({ users, loading, search, setSearch, filter, setFilter, onAddU
       ) : (
         <div className="p-6 text-center">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FaUsers className="text-slate-400 text-2xl" />
+            <FaUsers className="text-black text-2xl" />
           </div>
-          <p className="text-slate-500">No users found</p>
+          <p className="text-black">No users found</p>
         </div>
       )}
     </div>
@@ -555,10 +555,10 @@ function AuditTab({ logs, loading }) {
       UPDATE: 'text-blue-600 bg-blue-50',
       DELETE: 'text-red-600 bg-red-50',
       LOGIN: 'text-purple-600 bg-purple-50',
-      LOGOUT: 'text-slate-600 bg-slate-50',
-      VIEW: 'text-slate-600 bg-slate-50'
+      LOGOUT: 'text-black bg-slate-100',
+      VIEW: 'text-black bg-slate-100'
     }
-    return colors[action] || 'text-slate-600 bg-slate-50'
+    return colors[action] || 'text-black bg-slate-100'
   }
 
   const filteredLogs = logs.filter(log => {
@@ -589,8 +589,8 @@ function AuditTab({ logs, loading }) {
         </div>
       </div>
 
-      <div className="p-4 border-b border-slate-100 bg-slate-50">
-        <div className="flex items-center gap-4 text-sm text-slate-600">
+      <div className="p-4 border-b border-black bg-slate-100">
+        <div className="flex items-center gap-4 text-sm text-black">
           <FaCalendar />
           <span>Showing all activity logs for compliance tracking</span>
         </div>
@@ -601,9 +601,9 @@ function AuditTab({ logs, loading }) {
           <FaSpinner className="animate-spin text-2xl text-primary-600" />
         </div>
       ) : filteredLogs.length > 0 ? (
-        <div className="divide-y divide-slate-100">
+        <div className="divide-y divide-black">
           {filteredLogs.slice(0, 50).map((log, index) => (
-            <div key={log.id || index} className="p-4 hover:bg-slate-50 transition">
+            <div key={log.id || index} className="p-4 hover:bg-slate-100 transition">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3">
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${getActionColor(log.action)}`}>
@@ -616,22 +616,22 @@ function AuditTab({ logs, loading }) {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <p className="font-medium text-slate-900">
+                      <p className="font-medium text-black">
                         {log.user?.firstName} {log.user?.lastName}
                       </p>
                       <span className={`badge ${getActionColor(log.action)}`}>
                         {log.action}
                       </span>
                     </div>
-                    <p className="text-sm text-slate-600 mt-1">{log.description || `${log.resourceType} ${log.action?.toLowerCase()}`}</p>
+                    <p className="text-sm text-black mt-1">{log.description || `${log.resourceType} ${log.action?.toLowerCase()}`}</p>
                     {log.resourceType && (
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-black mt-1">
                         Resource: {log.resourceType} {log.resourceId && `#${log.resourceId.slice(0, 8)}`}
                       </p>
                     )}
                   </div>
                 </div>
-                <div className="text-right text-sm text-slate-500">
+                <div className="text-right text-sm text-black">
                   <p>{log.createdAt ? new Date(log.createdAt).toLocaleString() : '--'}</p>
                   {log.ipAddress && <p className="text-xs">IP: {log.ipAddress}</p>}
                 </div>
@@ -642,10 +642,10 @@ function AuditTab({ logs, loading }) {
       ) : (
         <div className="p-6 text-center">
           <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FaHistory className="text-slate-400 text-2xl" />
+            <FaHistory className="text-black text-2xl" />
           </div>
-          <p className="text-slate-500">No audit logs found</p>
-          <p className="text-sm text-slate-400 mt-1">Activity will be tracked here</p>
+          <p className="text-black">No audit logs found</p>
+          <p className="text-sm text-black mt-1">Activity will be tracked here</p>
         </div>
       )}
     </div>
@@ -667,7 +667,8 @@ function UserFormModal({ onClose, onSuccess }) {
     yearsExperience: '',
     nursingLicense: '',
     certificationLevel: '',
-    shiftType: ''
+    shiftType: '',
+    availabilitySchedule: []
   })
   const [loading, setLoading] = useState(false)
 
@@ -715,19 +716,19 @@ function UserFormModal({ onClose, onSuccess }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
-      <div className="modal-content max-w-2xl" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="modal-content max-w-2xl max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="text-lg font-semibold text-slate-900">Add New User</h2>
+          <h2 className="text-lg font-semibold text-black">Add New User</h2>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500" />
+            <FaTimes className="text-black" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Role</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Role</label>
               <select
                 value={formData.role}
                 onChange={(e) => handleChange('role', e.target.value)}
@@ -741,7 +742,7 @@ function UserFormModal({ onClose, onSuccess }) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Phone</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Phone</label>
               <input
                 type="tel"
                 value={formData.phone}
@@ -751,7 +752,7 @@ function UserFormModal({ onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">First Name</label>
+              <label className="block text-sm font-medium text-black mb-1.5">First Name</label>
               <input
                 type="text"
                 value={formData.firstName}
@@ -762,7 +763,7 @@ function UserFormModal({ onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Last Name</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Last Name</label>
               <input
                 type="text"
                 value={formData.lastName}
@@ -773,7 +774,7 @@ function UserFormModal({ onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Email</label>
               <input
                 type="email"
                 value={formData.email}
@@ -784,7 +785,7 @@ function UserFormModal({ onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Password</label>
               <input
                 type="password"
                 value={formData.password}
@@ -799,10 +800,10 @@ function UserFormModal({ onClose, onSuccess }) {
 
           {formData.role === 'DOCTOR' && (
             <div>
-              <h3 className="text-sm font-semibold text-slate-700 mb-3 pb-2 border-b">Doctor Details</h3>
+              <h3 className="text-sm font-semibold text-black mb-3 pb-2 border-b">Doctor Details</h3>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Specialization</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Specialization</label>
                   <select
                     value={formData.specialization}
                     onChange={(e) => handleChange('specialization', e.target.value)}
@@ -824,7 +825,7 @@ function UserFormModal({ onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">License Number</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">License Number</label>
                   <input
                     type="text"
                     value={formData.licenseNumber}
@@ -833,7 +834,7 @@ function UserFormModal({ onClose, onSuccess }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Department</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Department</label>
                   <select
                     value={formData.department}
                     onChange={(e) => handleChange('department', e.target.value)}
@@ -852,7 +853,7 @@ function UserFormModal({ onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Consultation Fee</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Consultation Fee</label>
                   <input
                     type="number"
                     step="0.01"
@@ -860,6 +861,78 @@ function UserFormModal({ onClose, onSuccess }) {
                     onChange={(e) => handleChange('consultationFee', e.target.value)}
                     className="input"
                   />
+                                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-medium text-black mb-1.5">Weekly Availability Schedule</label>
+                  <div className="bg-slate-50 rounded-lg p-4 space-y-3">
+                    {formData.availabilitySchedule && formData.availabilitySchedule.length > 0 ? (
+                      formData.availabilitySchedule.map((slot, index) => (
+                        <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-lg border">
+                          <select
+                            value={slot.day}
+                            onChange={(e) => {
+                              const newSchedule = [...formData.availabilitySchedule];
+                              newSchedule[index] = { ...slot, day: e.target.value };
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="input flex-1"
+                          >
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                          </select>
+                          <input
+                            type="time"
+                            value={slot.startTime}
+                            onChange={(e) => {
+                              const newSchedule = [...formData.availabilitySchedule];
+                              newSchedule[index] = { ...slot, startTime: e.target.value };
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="input w-28"
+                          />
+                          <span className="text-black">to</span>
+                          <input
+                            type="time"
+                            value={slot.endTime}
+                            onChange={(e) => {
+                              const newSchedule = [...formData.availabilitySchedule];
+                              newSchedule[index] = { ...slot, endTime: e.target.value };
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="input w-28"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newSchedule = formData.availabilitySchedule.filter((_, i) => i !== index);
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
+                          >
+                            <FaTimes />
+                          </button>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-black text-sm">No availability slots set</p>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newSchedule = [...(formData.availabilitySchedule || []), { day: 'Monday', startTime: '09:00', endTime: '17:00' }];
+                        handleChange('availabilitySchedule', newSchedule);
+                      }}
+                      className="btn-secondary w-full"
+                    >
+                      <FaPlus /> Add Schedule Slot
+                    </button>
+                  </div>
+                  <p className="text-xs text-black mt-1">Set the doctor's recurring weekly availability</p>
                 </div>
               </div>
             </div>
@@ -867,10 +940,10 @@ function UserFormModal({ onClose, onSuccess }) {
 
           {formData.role === 'NURSE' && (
             <div>
-              <h3 className="text-sm font-semibold text-slate-700 mb-3 pb-2 border-b">Nurse Details</h3>
+              <h3 className="text-sm font-semibold text-black mb-3 pb-2 border-b">Nurse Details</h3>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">License Number</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">License Number</label>
                   <input
                     type="text"
                     value={formData.nursingLicense}
@@ -879,7 +952,7 @@ function UserFormModal({ onClose, onSuccess }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Department</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Department</label>
                   <select
                     value={formData.department}
                     onChange={(e) => handleChange('department', e.target.value)}
@@ -898,7 +971,7 @@ function UserFormModal({ onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Certification Level</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Certification Level</label>
                   <select
                     value={formData.certificationLevel}
                     onChange={(e) => handleChange('certificationLevel', e.target.value)}
@@ -912,7 +985,7 @@ function UserFormModal({ onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Shift</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Shift</label>
                   <select
                     value={formData.shiftType}
                     onChange={(e) => handleChange('shiftType', e.target.value)}
@@ -957,7 +1030,8 @@ function EditUserModal({ user, onClose, onSuccess }) {
     yearsExperience: user.yearsExperience?.toString() || '',
     nursingLicense: user.nursingLicense || '',
     certificationLevel: user.certificationLevel || '',
-    shiftType: user.shiftType || ''
+    shiftType: user.shiftType || '',
+    availabilitySchedule: user.availabilitySchedule || []
   })
   const [loading, setLoading] = useState(false)
 
@@ -1004,19 +1078,19 @@ function EditUserModal({ user, onClose, onSuccess }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
-      <div className="modal-content max-w-2xl" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="modal-content max-w-2xl max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="text-lg font-semibold text-slate-900">Edit User</h2>
+          <h2 className="text-lg font-semibold text-black">Edit User</h2>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500" />
+            <FaTimes className="text-black" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Role</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Role</label>
               <select
                 value={formData.role}
                 onChange={(e) => handleChange('role', e.target.value)}
@@ -1030,7 +1104,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Phone</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Phone</label>
               <input
                 type="tel"
                 value={formData.phone}
@@ -1040,7 +1114,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">First Name</label>
+              <label className="block text-sm font-medium text-black mb-1.5">First Name</label>
               <input
                 type="text"
                 value={formData.firstName}
@@ -1051,7 +1125,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Last Name</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Last Name</label>
               <input
                 type="text"
                 value={formData.lastName}
@@ -1062,7 +1136,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+              <label className="block text-sm font-medium text-black mb-1.5">Email</label>
               <input
                 type="email"
                 value={formData.email}
@@ -1076,10 +1150,10 @@ function EditUserModal({ user, onClose, onSuccess }) {
 
           {formData.role === 'DOCTOR' && (
             <div>
-              <h3 className="text-sm font-semibold text-slate-700 mb-3 pb-2 border-b">Doctor Details</h3>
+              <h3 className="text-sm font-semibold text-black mb-3 pb-2 border-b">Doctor Details</h3>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Specialization</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Specialization</label>
                   <select
                     value={formData.specialization}
                     onChange={(e) => handleChange('specialization', e.target.value)}
@@ -1101,7 +1175,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">License Number</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">License Number</label>
                   <input
                     type="text"
                     value={formData.licenseNumber}
@@ -1110,7 +1184,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Department</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Department</label>
                   <select
                     value={formData.department}
                     onChange={(e) => handleChange('department', e.target.value)}
@@ -1129,7 +1203,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Consultation Fee</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Consultation Fee</label>
                   <input
                     type="number"
                     step="0.01"
@@ -1137,6 +1211,78 @@ function EditUserModal({ user, onClose, onSuccess }) {
                     onChange={(e) => handleChange('consultationFee', e.target.value)}
                     className="input"
                   />
+                                </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-medium text-black mb-1.5">Weekly Availability Schedule</label>
+                  <div className="bg-slate-50 rounded-lg p-4 space-y-3">
+                    {formData.availabilitySchedule && formData.availabilitySchedule.length > 0 ? (
+                      formData.availabilitySchedule.map((slot, index) => (
+                        <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-lg border">
+                          <select
+                            value={slot.day}
+                            onChange={(e) => {
+                              const newSchedule = [...formData.availabilitySchedule];
+                              newSchedule[index] = { ...slot, day: e.target.value };
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="input flex-1"
+                          >
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                          </select>
+                          <input
+                            type="time"
+                            value={slot.startTime}
+                            onChange={(e) => {
+                              const newSchedule = [...formData.availabilitySchedule];
+                              newSchedule[index] = { ...slot, startTime: e.target.value };
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="input w-28"
+                          />
+                          <span className="text-black">to</span>
+                          <input
+                            type="time"
+                            value={slot.endTime}
+                            onChange={(e) => {
+                              const newSchedule = [...formData.availabilitySchedule];
+                              newSchedule[index] = { ...slot, endTime: e.target.value };
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="input w-28"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newSchedule = formData.availabilitySchedule.filter((_, i) => i !== index);
+                              handleChange('availabilitySchedule', newSchedule);
+                            }}
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
+                          >
+                            <FaTimes />
+                          </button>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-black text-sm">No availability slots set</p>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newSchedule = [...(formData.availabilitySchedule || []), { day: 'Monday', startTime: '09:00', endTime: '17:00' }];
+                        handleChange('availabilitySchedule', newSchedule);
+                      }}
+                      className="btn-secondary w-full"
+                    >
+                      <FaPlus /> Add Schedule Slot
+                    </button>
+                  </div>
+                  <p className="text-xs text-black mt-1">Set the doctor's recurring weekly availability</p>
                 </div>
               </div>
             </div>
@@ -1144,10 +1290,10 @@ function EditUserModal({ user, onClose, onSuccess }) {
 
           {formData.role === 'NURSE' && (
             <div>
-              <h3 className="text-sm font-semibold text-slate-700 mb-3 pb-2 border-b">Nurse Details</h3>
+              <h3 className="text-sm font-semibold text-black mb-3 pb-2 border-b">Nurse Details</h3>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">License Number</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">License Number</label>
                   <input
                     type="text"
                     value={formData.nursingLicense}
@@ -1156,7 +1302,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Department</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Department</label>
                   <select
                     value={formData.department}
                     onChange={(e) => handleChange('department', e.target.value)}
@@ -1175,7 +1321,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Certification Level</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Certification Level</label>
                   <select
                     value={formData.certificationLevel}
                     onChange={(e) => handleChange('certificationLevel', e.target.value)}
@@ -1189,7 +1335,7 @@ function EditUserModal({ user, onClose, onSuccess }) {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Shift</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Shift</label>
                   <select
                     value={formData.shiftType}
                     onChange={(e) => handleChange('shiftType', e.target.value)}
@@ -1224,23 +1370,23 @@ function ViewUserModal({ user, onClose, onResetPassword }) {
   if (!user) return null
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
-      <div className="modal-content max-w-2xl" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+      <div className="modal-content max-w-2xl max-h-[85vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="text-lg font-semibold text-slate-900">User Details</h2>
-          <button onClick={onClose} className="p-1.5 hover-bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500" />
+          <h2 className="text-lg font-semibold text-black">User Details</h2>
+          <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-lg transition">
+            <FaTimes className="text-black" />
           </button>
         </div>
 
         <div className="p-6">
-          <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
+          <div className="flex items-center gap-4 mb-6 pb-6 border-b border-black">
             <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">
               <FaUser className="text-2xl" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-slate-900">{user.firstName} {user.lastName}</h3>
-              <p className="text-slate-500">{user.email}</p>
+              <h3 className="text-xl font-semibold text-black">{user.firstName} {user.lastName}</h3>
+              <p className="text-black">{user.email}</p>
               <span className={`badge ${
                 user.role === 'ADMIN' ? 'badge-danger' :
                 user.role === 'DOCTOR' ? 'badge-info' :
@@ -1253,48 +1399,65 @@ function ViewUserModal({ user, onClose, onResetPassword }) {
 
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
-              <h4 className="text-sm font-medium text-slate-700 mb-3 uppercase tracking-wider">Basic Information</h4>
+              <h4 className="text-sm font-medium text-black mb-3 uppercase tracking-wider">Basic Information</h4>
               <div className="space-y-3">
                 <div>
-                  <p className="text-xs text-slate-500">Phone</p>
-                  <p className="text-sm text-slate-900">{user.phone || '--'}</p>
+                  <p className="text-xs text-black">Phone</p>
+                  <p className="text-sm text-black">{user.phone || '--'}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Status</p>
+                  <p className="text-xs text-black">Status</p>
                   <span className={`badge ${user.isActive ? 'badge-success' : 'badge-warning'}`}>
                     {user.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500">Created At</p>
-                  <p className="text-sm text-slate-900">{user.createdAt ? new Date(user.createdAt).toLocaleString() : '--'}</p>
+                  <p className="text-xs text-black">Created At</p>
+                  <p className="text-sm text-black">{user.createdAt ? new Date(user.createdAt).toLocaleString() : '--'}</p>
                 </div>
               </div>
             </div>
 
             {user.role === 'DOCTOR' && (
               <div>
-                <h4 className="text-sm font-medium text-slate-700 mb-3 uppercase tracking-wider">Doctor Details</h4>
+                <h4 className="text-sm font-medium text-black mb-3 uppercase tracking-wider">Doctor Details</h4>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs text-slate-500">Specialization</p>
-                    <p className="text-sm text-slate-900">{user.specialization || 'General'}</p>
+                    <p className="text-xs text-black">Specialization</p>
+                    <p className="text-sm text-black">{user.specialization || 'General'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Department</p>
-                    <p className="text-sm text-slate-900">{user.department || '--'}</p>
+                    <p className="text-xs text-black">Department</p>
+                    <p className="text-sm text-black">{user.department || '--'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">License Number</p>
-                    <p className="text-sm text-slate-900">{user.licenseNumber || '--'}</p>
+                    <p className="text-xs text-black">License Number</p>
+                    <p className="text-sm text-black">{user.licenseNumber || '--'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Consultation Fee</p>
-                    <p className="text-sm text-slate-900">{user.consultationFee ? `PHP ${user.consultationFee}` : '--'}</p>
+                    <p className="text-xs text-black">Consultation Fee</p>
+                    <p className="text-sm text-black">{user.consultationFee ? `PHP ${user.consultationFee}` : '--'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Years of Experience</p>
-                    <p className="text-sm text-slate-900">{user.yearsExperience ? `${user.yearsExperience} years` : '--'}</p>
+                    <p className="text-xs text-black">Years of Experience</p>
+                    <p className="text-sm text-black">{user.yearsExperience ? `${user.yearsExperience} years` : '--'}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-black">Availability Schedule</p>
+                    <div className="text-sm text-black">
+                      {user.availabilitySchedule && user.availabilitySchedule.length > 0 ? (
+                        <div className="space-y-1 mt-1">
+                          {user.availabilitySchedule.map((slot, index) => (
+                            <div key={index} className="flex items-center gap-2">
+                              <span className="font-medium">{slot.day}:</span>
+                              <span>{slot.startTime} - {slot.endTime}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p>--</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1302,23 +1465,23 @@ function ViewUserModal({ user, onClose, onResetPassword }) {
 
             {user.role === 'NURSE' && (
               <div>
-                <h4 className="text-sm font-medium text-slate-700 mb-3 uppercase tracking-wider">Nurse Details</h4>
+                <h4 className="text-sm font-medium text-black mb-3 uppercase tracking-wider">Nurse Details</h4>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs text-slate-500">Department</p>
-                    <p className="text-sm text-slate-900">{user.department || '--'}</p>
+                    <p className="text-xs text-black">Department</p>
+                    <p className="text-sm text-black">{user.department || '--'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">License Number</p>
-                    <p className="text-sm text-slate-900">{user.nursingLicense || '--'}</p>
+                    <p className="text-xs text-black">License Number</p>
+                    <p className="text-sm text-black">{user.nursingLicense || '--'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Certification Level</p>
-                    <p className="text-sm text-slate-900">{user.certificationLevel || '--'}</p>
+                    <p className="text-xs text-black">Certification Level</p>
+                    <p className="text-sm text-black">{user.certificationLevel || '--'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Shift</p>
-                    <p className="text-sm text-slate-900">{user.shiftType || '--'}</p>
+                    <p className="text-xs text-black">Shift</p>
+                    <p className="text-sm text-black">{user.shiftType || '--'}</p>
                   </div>
                 </div>
               </div>
@@ -1326,11 +1489,11 @@ function ViewUserModal({ user, onClose, onResetPassword }) {
 
             {user.role === 'ADMIN' && (
               <div>
-                <h4 className="text-sm font-medium text-slate-700 mb-3 uppercase tracking-wider">Admin Details</h4>
+                <h4 className="text-sm font-medium text-black mb-3 uppercase tracking-wider">Admin Details</h4>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs text-slate-500">Department</p>
-                    <p className="text-sm text-slate-900">System Administration</p>
+                    <p className="text-xs text-black">Department</p>
+                    <p className="text-sm text-black">System Administration</p>
                   </div>
                 </div>
               </div>
@@ -1338,15 +1501,15 @@ function ViewUserModal({ user, onClose, onResetPassword }) {
 
             {user.role === 'STUDENT' && (
               <div>
-                <h4 className="text-sm font-medium text-slate-700 mb-3 uppercase tracking-wider">Student Details</h4>
+                <h4 className="text-sm font-medium text-black mb-3 uppercase tracking-wider">Student Details</h4>
                 <div className="space-y-3">
                   <div>
-                    <p className="text-xs text-slate-500">Specialization</p>
-                    <p className="text-sm text-slate-900">{user.specialization || 'Student'}</p>
+                    <p className="text-xs text-black">Specialization</p>
+                    <p className="text-sm text-black">{user.specialization || 'Student'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Department</p>
-                    <p className="text-sm text-slate-900">{user.department || '--'}</p>
+                    <p className="text-xs text-black">Department</p>
+                    <p className="text-sm text-black">{user.department || '--'}</p>
                   </div>
                 </div>
               </div>
@@ -1404,12 +1567,12 @@ function ResetPasswordModal({ user, onClose, onConfirm }) {
   if (!user) return null
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
       <div className="modal-content max-w-md" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="text-lg font-semibold text-slate-900">Reset Password</h2>
+          <h2 className="text-lg font-semibold text-black">Reset Password</h2>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500" />
+            <FaTimes className="text-black" />
           </button>
         </div>
 
@@ -1421,7 +1584,7 @@ function ResetPasswordModal({ user, onClose, onConfirm }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">New Password</label>
+            <label className="block text-sm font-medium text-black mb-1.5">New Password</label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -1434,7 +1597,7 @@ function ResetPasswordModal({ user, onClose, onConfirm }) {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-black hover:text-black"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
@@ -1442,7 +1605,7 @@ function ResetPasswordModal({ user, onClose, onConfirm }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">Confirm Password</label>
+            <label className="block text-sm font-medium text-black mb-1.5">Confirm Password</label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -1467,7 +1630,7 @@ function ResetPasswordModal({ user, onClose, onConfirm }) {
                     style={{ width: `${(strength / 5) * 100}%` }}
                   />
                 </div>
-                <span className={`text-xs font-medium ${strength >= 4 ? 'text-emerald-600' : 'text-slate-500'}`}>
+                <span className={`text-xs font-medium ${strength >= 4 ? 'text-emerald-600' : 'text-black'}`}>
                   {strength > 0 ? strengthLabels[strength - 1] : 'Very Weak'}
                 </span>
               </div>
@@ -1475,10 +1638,10 @@ function ResetPasswordModal({ user, onClose, onConfirm }) {
               <div className="space-y-1">
                 {requirements.map((req, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <span className={`text-xs ${req.met ? 'text-emerald-500' : 'text-slate-400'}`}>
+                    <span className={`text-xs ${req.met ? 'text-emerald-500' : 'text-black'}`}>
                       {req.met ? <FaCheck /> : <FaTimes />}
                     </span>
-                    <span className={`text-xs ${req.met ? 'text-emerald-700' : 'text-slate-500'}`}>
+                    <span className={`text-xs ${req.met ? 'text-emerald-700' : 'text-black'}`}>
                       {req.label}
                     </span>
                   </div>

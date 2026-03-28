@@ -78,16 +78,16 @@ function Dialog({ isOpen, onClose, onConfirm, title, message, confirmText = 'Con
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+              <h3 className="text-lg font-semibold text-black">{title}</h3>
             </div>
           </div>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500" />
+            <FaTimes className="text-black" />
           </button>
         </div>
 
         <div className="p-6">
-          <p className="text-slate-600">{message}</p>
+          <p className="text-black">{message}</p>
         </div>
 
         <div className="flex items-center justify-end gap-3 px-6 pb-6">

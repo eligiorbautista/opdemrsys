@@ -58,7 +58,7 @@ class AuthService {
   }
 
   static async register(data) {
-    const { email, password, firstName, lastName, role = 'DOCTOR', phone, specialization, department, licenseNumber, consultationFee, yearsExperience, nursingLicense, certificationLevel, shiftType } = data;
+    const { email, password, firstName, lastName, role = 'DOCTOR', phone, specialization, department, licenseNumber, consultationFee, yearsExperience, nursingLicense, certificationLevel, shiftType, availabilitySchedule } = data;
 
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -81,6 +81,10 @@ class AuthService {
       userData.specialization = specialization;
       userData.department = department;
       userData.licenseNumber = licenseNumber;
+      // Convert availabilitySchedule array to JSON string for storage
+      if (availabilitySchedule && Array.isArray(availabilitySchedule)) {
+        userData.availabilitySchedule = JSON.stringify(availabilitySchedule);
+      }
       if (consultationFee !== undefined && consultationFee !== null && consultationFee !== '') {
         userData.consultationFee = parseFloat(consultationFee);
       }

@@ -176,8 +176,8 @@ function Patients() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Total Patients</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{patients.length || 0}</p>
+              <p className="text-sm font-medium text-black">Total Patients</p>
+              <p className="text-2xl font-bold text-black mt-1">{patients.length || 0}</p>
             </div>
             <div className="stat-card-icon bg-blue-50 text-blue-600">
               <FaUser />
@@ -187,8 +187,8 @@ function Patients() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Active</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">
+              <p className="text-sm font-medium text-black">Active</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {patients.filter(p => p.status === 'ACTIVE').length || 0}
               </p>
             </div>
@@ -200,8 +200,8 @@ function Patients() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">New This Week</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">0</p>
+              <p className="text-sm font-medium text-black">New This Week</p>
+              <p className="text-2xl font-bold text-black mt-1">0</p>
             </div>
             <div className="stat-card-icon bg-purple-50 text-purple-600">
               <FaPlusCircle />
@@ -211,8 +211,8 @@ function Patients() {
         <div className="stat-card">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">With Allergies</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">--</p>
+              <p className="text-sm font-medium text-black">With Allergies</p>
+              <p className="text-2xl font-bold text-black mt-1">--</p>
             </div>
             <div className="stat-card-icon bg-amber-50 text-amber-600">
               <FaProcedures />
@@ -270,12 +270,12 @@ function Patients() {
                   >
                     <td>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-black">
                           <FaUser />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">{patient.firstName} {patient.lastName}</p>
-                          <p className="text-xs text-slate-500">{patient.email || 'No email'}</p>
+                          <p className="font-medium text-black">{patient.firstName} {patient.lastName}</p>
+                          <p className="text-xs text-black">{patient.email || 'No email'}</p>
                         </div>
                       </div>
                     </td>
@@ -292,21 +292,21 @@ function Patients() {
                       <div className="flex items-center justify-end gap-1">
                         <Link
                           to={`/patients/${patient.id}`}
-                          className="p-2 hover:bg-blue-50 rounded-lg text-slate-600 hover:text-blue-600 transition"
+                          className="p-2 hover:bg-blue-50 rounded-lg text-black hover:text-blue-600 transition"
                           title="View Details"
                         >
                           <FaEye />
                         </Link>
                         <button
                           onClick={() => openEditModal(patient)}
-                          className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 hover:text-primary-600 transition"
+                          className="p-2 hover:bg-slate-100 rounded-lg text-black hover:text-primary-600 transition"
                           title="Edit"
                         >
                           <FaEdit />
                         </button>
                         <button
                           onClick={() => openDeleteDialog(patient.id, `${patient.firstName} ${patient.lastName}`)}
-                          className="p-2 hover:bg-red-50 rounded-lg text-slate-600 hover:text-red-600 transition"
+                          className="p-2 hover:bg-red-50 rounded-lg text-black hover:text-red-600 transition"
                           title="Delete"
                         >
                           <FaTrash />
@@ -321,9 +321,9 @@ function Patients() {
         ) : (
           <div className="text-center py-12">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FaUser className="text-slate-400 text-2xl" />
+              <FaUser className="text-black text-2xl" />
             </div>
-            <p className="text-slate-500">No patients found</p>
+            <p className="text-black">No patients found</p>
           </div>
         )}
       </div>

@@ -12,7 +12,7 @@ function MainLayout() {
       <Toaster position="bottom-right" richColors />
       <footer className="bg-white border-t border-slate-200 mt-auto">
         <div className="px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-center text-sm text-slate-500">
+          <p className="text-center text-sm text-black">
             © {new Date().getFullYear()} OPD EMR System. All rights reserved.
           </p>
         </div>

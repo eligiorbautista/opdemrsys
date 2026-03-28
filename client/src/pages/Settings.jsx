@@ -152,7 +152,7 @@ function Settings() {
       case 'ADMIN': return 'bg-red-100 text-red-800'
       case 'DOCTOR': return 'bg-blue-100 text-blue-800'
       case 'NURSE': return 'bg-emerald-100 text-emerald-800'
-      default: return 'bg-slate-100 text-slate-800'
+      default: return 'bg-slate-100 text-black'
     }
   }
 
@@ -161,7 +161,7 @@ function Settings() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <FaSpinner className="animate-spin text-3xl text-primary-600 mx-auto mb-4" />
-          <p className="text-slate-500">Loading settings...</p>
+          <p className="text-black">Loading settings...</p>
         </div>
       </div>
     )
@@ -189,7 +189,7 @@ function Settings() {
                 <div className="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mx-auto mb-4">
                   <FaUser className="text-4xl" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900">{user?.firstName} {user?.lastName}</h3>
+                <h3 className="text-xl font-semibold text-black">{user?.firstName} {user?.lastName}</h3>
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mt-2 ${getRoleColor(user?.role)}`}>
                   {user?.role}
                 </span>
@@ -197,19 +197,19 @@ function Settings() {
 
               <div className="space-y-4 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3 text-sm">
-                  <FaEnvelope className="text-slate-400 w-5" />
-                  <span className="text-slate-600 truncate">{user?.email}</span>
+                  <FaEnvelope className="text-black w-5" />
+                  <span className="text-black truncate">{user?.email}</span>
                 </div>
                 {user?.phone && (
                   <div className="flex items-center gap-3 text-sm">
-                    <FaPhone className="text-slate-400 w-5" />
-                    <span className="text-slate-600">{user?.phone}</span>
+                    <FaPhone className="text-black w-5" />
+                    <span className="text-black">{user?.phone}</span>
                   </div>
                 )}
                 {user?.department && (
                   <div className="flex items-center gap-3 text-sm">
-                    <FaBuilding className="text-slate-400 w-5" />
-                    <span className="text-slate-600">{user?.department}</span>
+                    <FaBuilding className="text-black w-5" />
+                    <span className="text-black">{user?.department}</span>
                   </div>
                 )}
               </div>
@@ -221,7 +221,7 @@ function Settings() {
           <div className="card">
             <div className="card-header">
               <div className="flex items-center gap-2">
-                <FaShieldAlt className="text-slate-400" />
+                <FaShieldAlt className="text-black" />
                 <h2 className="section-title mb-0">Change Password</h2>
               </div>
             </div>
@@ -229,9 +229,9 @@ function Settings() {
             <div className="p-6">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Current Password</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Current Password</label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black">
                       <FaLock className="text-sm" />
                     </span>
                     <input
@@ -245,7 +245,7 @@ function Settings() {
                     <button
                       type="button"
                       onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-black"
                     >
                       {showCurrentPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
@@ -253,9 +253,9 @@ function Settings() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">New Password</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">New Password</label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black">
                       <FaLock className="text-sm" />
                     </span>
                     <input
@@ -270,7 +270,7 @@ function Settings() {
                     <button
                       type="button"
                       onClick={() => setShowNewPassword(!showNewPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-black"
                     >
                       {showNewPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
@@ -284,7 +284,7 @@ function Settings() {
                             style={{ width: `${getStrengthPercentage(newPassword)}%` }}
                           />
                         </div>
-                        <span className={`text-xs font-medium ${getStrengthLabel(newPassword) !== 'Very Weak' ? 'text-emerald-600' : 'text-slate-500'}`}>
+                        <span className={`text-xs font-medium ${getStrengthLabel(newPassword) !== 'Very Weak' ? 'text-emerald-600' : 'text-black'}`}>
                           {getStrengthLabel(newPassword)}
                         </span>
                       </div>
@@ -296,10 +296,10 @@ function Settings() {
                           { label: 'At least 1 number', met: /[0-9]/.test(newPassword) }
                         ].map((req, index) => (
                           <div key={index} className="flex items-center gap-2">
-                            <span className={`text-xs ${req.met ? 'text-emerald-500' : 'text-slate-400'}`}>
+                            <span className={`text-xs ${req.met ? 'text-emerald-500' : 'text-black'}`}>
                               {req.met ? <FaCheck /> : <FaTimes />}
                             </span>
-                            <span className={`text-xs ${req.met ? 'text-emerald-700' : 'text-slate-500'}`}>
+                            <span className={`text-xs ${req.met ? 'text-emerald-700' : 'text-black'}`}>
                               {req.label}
                             </span>
                           </div>
@@ -310,9 +310,9 @@ function Settings() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Confirm New Password</label>
+                  <label className="block text-sm font-medium text-black mb-1.5">Confirm New Password</label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black">
                       <FaLock className="text-sm" />
                     </span>
                     <input
@@ -326,7 +326,7 @@ function Settings() {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-black"
                     >
                       {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
@@ -360,25 +360,25 @@ function Settings() {
           <div className="card mt-6">
             <div className="card-header">
               <div className="flex items-center gap-2">
-                <FaIdCard className="text-slate-400" />
+                <FaIdCard className="text-black" />
                 <h2 className="section-title mb-0">Account Information</h2>
               </div>
             </div>
             <div className="p-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="bg-slate-50 rounded-lg p-4">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Role</p>
-                  <p className="font-medium text-slate-900">{user?.role}</p>
+                  <p className="text-xs text-black uppercase tracking-wider mb-1">Role</p>
+                  <p className="font-medium text-black">{user?.role}</p>
                 </div>
                 <div className="bg-slate-50 rounded-lg p-4">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Status</p>
+                  <p className="text-xs text-black uppercase tracking-wider mb-1">Status</p>
                   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium ${user?.isActive ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`}>
                     {user?.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
                 <div className="bg-slate-50 rounded-lg p-4 sm:col-span-2">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">User ID</p>
-                  <p className="font-mono text-sm text-slate-900">{user?.id}</p>
+                  <p className="text-xs text-black uppercase tracking-wider mb-1">User ID</p>
+                  <p className="font-mono text-sm text-black">{user?.id}</p>
                 </div>
               </div>
             </div>

@@ -63,8 +63,8 @@ function Dashboard() {
         <div className="stat-card">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Total Patients</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{stats.totalPatients || 0}</p>
+              <p className="text-sm font-medium text-black">Total Patients</p>
+              <p className="text-2xl font-bold text-black mt-1">{stats.totalPatients || 0}</p>
             </div>
             <div className="stat-card-icon bg-blue-50 text-blue-600">
               <FaUsers />
@@ -75,8 +75,8 @@ function Dashboard() {
         <div className="stat-card">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Visits Today</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{stats.visitsToday || 0}</p>
+              <p className="text-sm font-medium text-black">Visits Today</p>
+              <p className="text-2xl font-bold text-black mt-1">{stats.visitsToday || 0}</p>
             </div>
             <div className="stat-card-icon bg-emerald-50 text-emerald-600">
               <FaCalendarCheck />
@@ -87,8 +87,8 @@ function Dashboard() {
         <div className="stat-card">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Consultations</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{stats.consultationsToday || 0}</p>
+              <p className="text-sm font-medium text-black">Consultations</p>
+              <p className="text-2xl font-bold text-black mt-1">{stats.consultationsToday || 0}</p>
             </div>
             <div className="stat-card-icon bg-purple-50 text-purple-600">
               <FaStethoscope />
@@ -99,8 +99,8 @@ function Dashboard() {
         <div className="stat-card">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-500">Queue</p>
-              <p className="text-2xl font-bold text-slate-900 mt-1">{stats.queueWaiting || 0}</p>
+              <p className="text-sm font-medium text-black">Queue</p>
+              <p className="text-2xl font-bold text-black mt-1">{stats.queueWaiting || 0}</p>
             </div>
             <div className="stat-card-icon bg-amber-50 text-amber-600">
               <FaClock />
@@ -127,9 +127,9 @@ function Dashboard() {
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-slate-50 ${action.color}`}>
                     <action.icon />
                   </div>
-                  <span className="font-medium text-slate-700">{action.label}</span>
+                  <span className="font-medium text-black">{action.label}</span>
                 </div>
-                <FaArrowRight className="text-slate-400" />
+                <FaArrowRight className="text-black" />
               </Link>
             ))}
           </div>
@@ -147,9 +147,9 @@ function Dashboard() {
                   <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
                     <FaUserPlus className="text-sm" />
                   </div>
-                  <span className="text-sm text-slate-600">New Patients</span>
+                  <span className="text-sm text-black">New Patients</span>
                 </div>
-                <span className="font-semibold text-slate-900">0</span>
+                <span className="font-semibold text-black">0</span>
               </div>
 
               <div className="flex items-center justify-between py-2 border-b border-slate-100">
@@ -157,9 +157,9 @@ function Dashboard() {
                   <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600">
                     <FaStethoscope className="text-sm" />
                   </div>
-                  <span className="text-sm text-slate-600">Consultations</span>
+                  <span className="text-sm text-black">Consultations</span>
                 </div>
-                <span className="font-semibold text-slate-900">{stats.consultationsToday || 0}</span>
+                <span className="font-semibold text-black">{stats.consultationsToday || 0}</span>
               </div>
 
               <div className="flex items-center justify-between py-2">
@@ -167,9 +167,9 @@ function Dashboard() {
                   <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
                     <FaFileMedical className="text-sm" />
                   </div>
-                  <span className="text-sm text-slate-600">Prescriptions</span>
+                  <span className="text-sm text-black">Prescriptions</span>
                 </div>
-                <span className="font-semibold text-slate-900">0</span>
+                <span className="font-semibold text-black">0</span>
               </div>
             </div>
           </div>
@@ -182,11 +182,11 @@ function Dashboard() {
           <div className="flex items-start justify-between">
             <div>
               <h3 className="text-lg font-semibold">OPD EMR System</h3>
-              <p className="text-slate-400 text-sm mt-1 max-w-md">
+              <p className="text-white text-sm mt-1 max-w-md">
                 Your comprehensive outpatient department management system for efficient workflow and quality patient care.
               </p>
             </div>
-            <button onClick={() => navigate('/patients')} className="btn bg-white text-slate-900 hover:bg-slate-100">
+            <button onClick={() => navigate('/patients')} className="btn bg-white text-black hover:bg-slate-100">
               <FaPlus />
               Get Started
             </button>

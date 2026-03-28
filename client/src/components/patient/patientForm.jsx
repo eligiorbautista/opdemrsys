@@ -114,17 +114,17 @@ export default function PatientFormModal({ patient, onClose, onSubmit }) {
   }
 
   const inputClass = "input text-xs py-1"
-  const labelClass = "block text-[10px] font-medium text-slate-600 mb-0.5"
+  const labelClass = "block text-[10px] font-medium text-black mb-0.5"
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4" onClick={onClose}>
       <div className="modal-content !max-w-5xl !w-[90vw] !max-h-[90vh] bg-white rounded-xl" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header !py-2 !px-4">
-          <h2 className="text-base font-semibold text-slate-900">
+          <h2 className="text-base font-semibold text-black">
             {patient ? 'Edit Patient' : 'Add New Patient'}
           </h2>
           <button onClick={onClose} className="p-1 hover:bg-slate-100 rounded-lg transition">
-            <FaTimes className="text-slate-500 text-sm" />
+            <FaTimes className="text-black text-sm" />
           </button>
         </div>
 
@@ -210,22 +210,22 @@ export default function PatientFormModal({ patient, onClose, onSubmit }) {
                   <div>
                     <label className={labelClass}>Known Allergies <span className="text-red-500">*</span></label>
                     <input type="text" value={formData.knownAllergies} onChange={(e) => handleArrayField('knownAllergies', e.target.value)} className={inputClass} placeholder="e.g., Penicillin, Peanuts" required />
-                    <span className="text-[9px] text-slate-400">Separate with commas</span>
+                    <span className="text-[9px] text-black">Separate with commas</span>
                   </div>
                   <div>
                     <label className={labelClass}>Chronic Conditions</label>
                     <input type="text" value={formData.chronicConditions} onChange={(e) => handleArrayField('chronicConditions', e.target.value)} className={inputClass} placeholder="e.g., Diabetes, Hypertension" />
-                    <span className="text-[9px] text-slate-400">Separate with commas</span>
+                    <span className="text-[9px] text-black">Separate with commas</span>
                   </div>
                   <div>
                     <label className={labelClass}>Current Medications</label>
                     <input type="text" value={formData.currentMedications} onChange={(e) => handleArrayField('currentMedications', e.target.value)} className={inputClass} placeholder="e.g., Metformin 500mg" />
-                    <span className="text-[9px] text-slate-400">Separate with commas</span>
+                    <span className="text-[9px] text-black">Separate with commas</span>
                   </div>
                   <div>
                     <label className={labelClass}>Past Surgeries</label>
                     <input type="text" value={formData.pastSurgeries} onChange={(e) => handleArrayField('pastSurgeries', e.target.value)} className={inputClass} placeholder="e.g., Appendectomy 2020" />
-                    <span className="text-[9px] text-slate-400">Separate with commas</span>
+                    <span className="text-[9px] text-black">Separate with commas</span>
                   </div>
                   <div>
                     <label className={labelClass}>Family History</label>
@@ -302,7 +302,7 @@ export default function PatientFormModal({ patient, onClose, onSubmit }) {
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-2 border-t border-slate-200">
+          <div className="flex justify-end gap-2 pt-2 border-t border-black">
             <button type="button" onClick={onClose} className="btn-secondary text-xs px-3 py-1.5">
               Cancel
             </button>

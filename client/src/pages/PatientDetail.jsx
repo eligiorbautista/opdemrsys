@@ -131,7 +131,7 @@ function PatientDetail() {
   if (!patient) {
     return (
       <div className="text-center py-12">
-        <p className="text-slate-500">Patient not found</p>
+        <p className="text-black">Patient not found</p>
         <Link to="/patients" className="text-primary-600 hover:underline mt-2 inline-block">
           Back to Patients
         </Link>
@@ -151,7 +151,7 @@ function PatientDetail() {
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Back Link */}
-      <Link to="/patients" className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition">
+      <Link to="/patients" className="inline-flex items-center gap-2 text-black hover:text-black transition">
         <FaArrowLeft />
         <span>Back to Patients</span>
       </Link>
@@ -165,15 +165,15 @@ function PatientDetail() {
                 <FaUser className="text-3xl" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900">
+                <h1 className="text-2xl font-bold text-black">
                   {patient.firstName} {patient.lastName}
                 </h1>
                 <div className="flex flex-wrap items-center gap-3 mt-2">
                   <span className={getStatusBadge(patient.status)}>
                     {patient.status}
                   </span>
-                  <span className="text-sm text-slate-500">{patient.gender}</span>
-                  <span className="text-sm text-slate-500">DOB: {patient.dateOfBirth ? new Date(patient.dateOfBirth).toLocaleDateString() : '--'}</span>
+                  <span className="text-sm text-black">{patient.gender}</span>
+                  <span className="text-sm text-black">DOB: {patient.dateOfBirth ? new Date(patient.dateOfBirth).toLocaleDateString() : '--'}</span>
                   {patient.bloodType && (
                     <span className="badge badge-info">Blood: {patient.bloodType.replace('_', ' ')}</span>
                   )}
@@ -189,7 +189,7 @@ function PatientDetail() {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="border-b border-slate-200">
+      <div className="border-b border-black">
         <nav className="flex gap-1 px-6">
           {tabs.map((tab) => (
             <button
@@ -198,7 +198,7 @@ function PatientDetail() {
               className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === tab.id
                   ? 'border-primary-600 text-primary-600'
-                  : 'border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300'
+                  : 'border-transparent text-black hover:text-black hover:border-black'
               }`}
             >
               <tab.icon className="text-sm" />
@@ -223,31 +223,31 @@ function PatientDetail() {
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600">
+                    <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-black">
                       <FaPhone />
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Phone</p>
-                      <p className="font-medium text-slate-900">{patient.phone}</p>
+                      <p className="text-xs text-black">Phone</p>
+                      <p className="font-medium text-black">{patient.phone}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600">
+                    <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-black">
                       <FaEnvelope />
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Email</p>
-                      <p className="font-medium text-slate-900">{patient.email || 'Not provided'}</p>
+                      <p className="text-xs text-black">Email</p>
+                      <p className="font-medium text-black">{patient.email || 'Not provided'}</p>
                     </div>
                   </div>
                   {patient.address && (
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600 flex-shrink-0">
+                      <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-black flex-shrink-0">
                         <FaMapMarkerAlt />
                       </div>
                       <div>
-                        <p className="text-xs text-slate-500">Address</p>
-                        <p className="font-medium text-slate-900">{patient.address}</p>
+                        <p className="text-xs text-black">Address</p>
+                        <p className="font-medium text-black">{patient.address}</p>
                       </div>
                     </div>
                   )}
@@ -264,20 +264,20 @@ function PatientDetail() {
                 <div className="p-6 space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-xs text-slate-500">Occupation</p>
-                      <p className="font-medium text-slate-900">{patient.occupation || 'Not provided'}</p>
+                      <p className="text-xs text-black">Occupation</p>
+                      <p className="font-medium text-black">{patient.occupation || 'Not provided'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Marital Status</p>
-                      <p className="font-medium text-slate-900">{patient.maritalStatus || 'Not provided'}</p>
+                      <p className="text-xs text-black">Marital Status</p>
+                      <p className="font-medium text-black">{patient.maritalStatus || 'Not provided'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Preferred Language</p>
-                      <p className="font-medium text-slate-900">{patient.preferredLanguage || 'Not provided'}</p>
+                      <p className="text-xs text-black">Preferred Language</p>
+                      <p className="font-medium text-black">{patient.preferredLanguage || 'Not provided'}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Registered</p>
-                      <p className="font-medium text-slate-900">
+                      <p className="text-xs text-black">Registered</p>
+                      <p className="font-medium text-black">
                         {patient.createdAt ? new Date(patient.createdAt).toLocaleDateString() : 'Unknown'}
                       </p>
                     </div>
@@ -294,16 +294,16 @@ function PatientDetail() {
                 </div>
                 <div className="p-6 space-y-4">
                   <div>
-                    <p className="text-xs text-slate-500">Insurance Provider</p>
-                    <p className="font-medium text-slate-900">{patient.insuranceProvider || 'Not provided'}</p>
+                    <p className="text-xs text-black">Insurance Provider</p>
+                    <p className="font-medium text-black">{patient.insuranceProvider || 'Not provided'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Policy Number</p>
-                    <p className="font-medium text-slate-900">{patient.insurancePolicyNumber || 'Not provided'}</p>
+                    <p className="text-xs text-black">Policy Number</p>
+                    <p className="font-medium text-black">{patient.insurancePolicyNumber || 'Not provided'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Preferred Pharmacy</p>
-                    <p className="font-medium text-slate-900">{patient.preferredPharmacy || 'Not provided'}</p>
+                    <p className="text-xs text-black">Preferred Pharmacy</p>
+                    <p className="font-medium text-black">{patient.preferredPharmacy || 'Not provided'}</p>
                   </div>
                 </div>
               </div>
@@ -319,16 +319,16 @@ function PatientDetail() {
               <div className="p-6">
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
-                    <p className="text-xs text-slate-500">Contact Name</p>
-                    <p className="font-medium text-slate-900">{patient.emergencyContact || 'Not provided'}</p>
+                    <p className="text-xs text-black">Contact Name</p>
+                    <p className="font-medium text-black">{patient.emergencyContact || 'Not provided'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Relationship</p>
-                    <p className="font-medium text-slate-900">{patient.emergencyContactRelation || 'Not provided'}</p>
+                    <p className="text-xs text-black">Relationship</p>
+                    <p className="font-medium text-black">{patient.emergencyContactRelation || 'Not provided'}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500">Phone</p>
-                    <p className="font-medium text-slate-900">{patient.emergencyPhone || 'Not provided'}</p>
+                    <p className="text-xs text-black">Phone</p>
+                    <p className="font-medium text-black">{patient.emergencyPhone || 'Not provided'}</p>
                   </div>
                 </div>
               </div>
@@ -348,7 +348,7 @@ function PatientDetail() {
               </div>
               <div className="p-6 space-y-4">
                 <div>
-                  <p className="text-sm font-semibold text-slate-700 mb-2">Known Allergies</p>
+                  <p className="text-sm font-semibold text-black mb-2">Known Allergies</p>
                   {patient.knownAllergies && patient.knownAllergies.length > 0 ? (
                     <div className="flex flex-wrap gap-2">
                       {patient.knownAllergies.map((allergy, idx) => (
@@ -356,11 +356,11 @@ function PatientDetail() {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-slate-500">No allergies recorded</p>
+                    <p className="text-black">No allergies recorded</p>
                   )}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-700 mb-2">Chronic Conditions</p>
+                  <p className="text-sm font-semibold text-black mb-2">Chronic Conditions</p>
                   {patient.chronicConditions && patient.chronicConditions.length > 0 ? (
                     <div className="flex flex-wrap gap-2">
                       {patient.chronicConditions.map((condition, idx) => (
@@ -368,19 +368,19 @@ function PatientDetail() {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-slate-500">None recorded</p>
+                    <p className="text-black">None recorded</p>
                   )}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-700 mb-2">Past Surgeries</p>
+                  <p className="text-sm font-semibold text-black mb-2">Past Surgeries</p>
                   {patient.pastSurgeries && patient.pastSurgeries.length > 0 ? (
-                    <ul className="list-disc list-inside text-slate-600 space-y-1">
+                    <ul className="list-disc list-inside text-black space-y-1">
                       {patient.pastSurgeries.map((surgery, idx) => (
                         <li key={idx}>{surgery}</li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-slate-500">None recorded</p>
+                    <p className="text-black">None recorded</p>
                   )}
                 </div>
               </div>
@@ -397,14 +397,14 @@ function PatientDetail() {
                 {patient.currentMedications && patient.currentMedications.length > 0 ? (
                   <ul className="space-y-2">
                     {patient.currentMedications.map((med, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-slate-600">
+                      <li key={idx} className="flex items-center gap-2 text-black">
                         <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                         {med}
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-slate-500">No current medications recorded</p>
+                  <p className="text-black">No current medications recorded</p>
                 )}
               </div>
             </div>
@@ -418,17 +418,17 @@ function PatientDetail() {
               </div>
               <div className="p-6">
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <p className="text-xs text-slate-500 mb-1">Smoking</p>
-                    <p className="font-semibold text-slate-900">{patient.smokingStatus || 'Unknown'}</p>
+                  <div className="text-center p-4 bg-slate-100 rounded-lg">
+                    <p className="text-xs text-black mb-1">Smoking</p>
+                    <p className="font-semibold text-black">{patient.smokingStatus || 'Unknown'}</p>
                   </div>
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <p className="text-xs text-slate-500 mb-1">Alcohol</p>
-                    <p className="font-semibold text-slate-900">{patient.alcoholUse || 'Unknown'}</p>
+                  <div className="text-center p-4 bg-slate-100 rounded-lg">
+                    <p className="text-xs text-black mb-1">Alcohol</p>
+                    <p className="font-semibold text-black">{patient.alcoholUse || 'Unknown'}</p>
                   </div>
-                  <div className="text-center p-4 bg-slate-50 rounded-lg">
-                    <p className="text-xs text-slate-500 mb-1">Exercise</p>
-                    <p className="font-semibold text-slate-900">{patient.exerciseHabits || 'Unknown'}</p>
+                  <div className="text-center p-4 bg-slate-100 rounded-lg">
+                    <p className="text-xs text-black mb-1">Exercise</p>
+                    <p className="font-semibold text-black">{patient.exerciseHabits || 'Unknown'}</p>
                   </div>
                 </div>
               </div>
@@ -448,31 +448,31 @@ function PatientDetail() {
               {consultations && consultations.length > 0 ? (
                 <div className="space-y-4">
                   {consultations.slice(0, 5).map((consultation) => (
-                    <div key={consultation.id} className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                    <div key={consultation.id} className="p-4 bg-slate-100 rounded-lg border border-slate-200">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
                           <FaStethoscope className="text-primary-600" />
-                          <span className="font-medium text-slate-900">
+                          <span className="font-medium text-black">
                             Dr. {consultation.doctor?.firstName} {consultation.doctor?.lastName}
                           </span>
                         </div>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-black">
                           {consultation.createdAt ? new Date(consultation.createdAt).toLocaleDateString() : ''}
                         </span>
                       </div>
                       {consultation.diagnosis && (
-                        <p className="text-sm text-slate-600 mb-2">
+                        <p className="text-sm text-black mb-2">
                           <span className="font-medium">Diagnosis:</span> {consultation.diagnosis}
                         </p>
                       )}
                       {consultation.icd10Code && (
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-black">
                           ICD-10: {consultation.icd10Code}
                         </p>
                       )}
                       {consultation.plan && (
                         <div className="mt-2">
-                          <p className="text-sm text-slate-600">
+                          <p className="text-sm text-black">
                             <span className="font-medium">Plan:</span> {consultation.plan}
                           </p>
                         </div>
@@ -483,10 +483,10 @@ function PatientDetail() {
               ) : (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaFileMedical className="text-slate-400 text-2xl" />
+                    <FaFileMedical className="text-black text-2xl" />
                   </div>
-                  <p className="text-slate-500">No clinical notes recorded</p>
-                  <p className="text-sm text-slate-400 mt-1">Consultation notes will appear here</p>
+                  <p className="text-black">No clinical notes recorded</p>
+                  <p className="text-sm text-black mt-1">Consultation notes will appear here</p>
                 </div>
               )}
             </div>
@@ -573,7 +573,7 @@ function PatientDetail() {
                       <tbody>
                         {orders.procedureOrders.map((order) => (
                           <tr key={order.id}>
-                            <td>{order.type}</td>
+                            <td>{order.description || order.procedureType || 'N/A'}</td>
                             <td>
                               <span className={`badge ${
                                 order.priority === 'STAT' ? 'badge-danger' :
@@ -593,7 +593,7 @@ function PatientDetail() {
                                 {order.status}
                               </span>
                             </td>
-                            <td>{order.scheduledDate ? new Date(order.scheduledDate).toLocaleDateString() : '--'}</td>
+                            <td>{order.performedAt ? new Date(order.performedAt).toLocaleDateString() : order.createdAt ? new Date(order.createdAt).toLocaleDateString() : '--'}</td>
                             <td>{order.instructions || 'Follow standard protocol'}</td>
                           </tr>
                         ))}
@@ -758,10 +758,10 @@ function PatientDetail() {
               <div className="card">
                 <div className="p-12 text-center">
                   <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FaClipboardCheck className="text-slate-400 text-2xl" />
+                    <FaClipboardCheck className="text-black text-2xl" />
                   </div>
-                  <p className="text-slate-500">No orders recorded</p>
-                  <p className="text-sm text-slate-400 mt-1">Lab orders, prescriptions, and other orders will appear here</p>
+                  <p className="text-black">No orders recorded</p>
+                  <p className="text-sm text-black mt-1">Lab orders, prescriptions, and other orders will appear here</p>
                 </div>
               </div>
             )}

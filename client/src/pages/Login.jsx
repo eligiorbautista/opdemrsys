@@ -39,13 +39,13 @@ function Login() {
   return (
     <div>
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold text-slate-900">Welcome back</h2>
-        <p className="text-sm text-slate-500 mt-1">Enter your credentials to sign in</p>
+        <h2 className="text-xl font-semibold text-black">Welcome back</h2>
+        <p className="text-sm text-black mt-1">Enter your credentials to sign in</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+          <label className="block text-sm font-medium text-black mb-1.5">Email</label>
           <div className="input-group">
             <FaUser className="input-group-icon" />
             <input
@@ -60,9 +60,9 @@ function Login() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
+          <label className="block text-sm font-medium text-black mb-1.5">Password</label>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-black">
               <FaLock />
             </span>
             <input
@@ -76,7 +76,7 @@ function Login() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-black hover:text-black"
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>

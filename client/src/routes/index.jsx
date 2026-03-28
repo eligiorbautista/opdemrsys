@@ -8,6 +8,7 @@ import PatientDetail from '../pages/PatientDetail'
 import DoctorConsultation from '../pages/DoctorConsultation'
 import NurseDocumentation from '../pages/NurseDocumentation'
 import Queue from '../pages/Queue'
+import QueueDisplay from '../pages/QueueDisplay'
 import Admin from '../pages/Admin'
 import Settings from '../pages/Settings'
 import ProtectedRoute from '../components/auth/ProtectedRoute'
@@ -19,6 +20,10 @@ export default createBrowserRouter([
     children: [
       { index: true, element: <Login /> }
     ]
+  },
+  {
+    path: '/display',
+    element: <QueueDisplay />
   },
   {
     path: '/',

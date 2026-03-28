@@ -58,6 +58,7 @@ router.get('/', async (req, res) => {
           licenseNumber: true,
           consultationFee: true,
           yearsExperience: true,
+          availabilitySchedule: true,
           // Nurse fields
           nursingLicense: true,
           certificationLevel: true,
@@ -67,9 +68,21 @@ router.get('/', async (req, res) => {
       prisma.user.count({ where })
     ]);
 
+    // Parse availabilitySchedule JSON strings to arrays
+    const parsedUsers = users.map(user => {
+      if (user.availabilitySchedule) {
+        try {
+          user.availabilitySchedule = JSON.parse(user.availabilitySchedule);
+        } catch (e) {
+          user.availabilitySchedule = [];
+        }
+      }
+      return user;
+    });
+
     res.json({
       success: true,
-      data: users,
+      data: parsedUsers,
       pagination: {
         page: Number(page),
         limit: Number(limit),
@@ -128,6 +141,15 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ success: false, error: 'User not found' });
     }
 
+    // Parse availabilitySchedule JSON string to array
+    if (user.availabilitySchedule) {
+      try {
+        user.availabilitySchedule = JSON.parse(user.availabilitySchedule);
+      } catch (e) {
+        user.availabilitySchedule = [];
+      }
+    }
+
     res.json({ success: true, data: user });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -156,6 +178,12 @@ router.put('/:id', async (req, res) => {
       delete updateData.licenseNumber;
       delete updateData.consultationFee;
       delete updateData.yearsExperience;
+      delete updateData.availabilitySchedule;
+    } else {
+      // Convert availabilitySchedule array to JSON string for storage
+      if (updateData.availabilitySchedule && Array.isArray(updateData.availabilitySchedule)) {
+        updateData.availabilitySchedule = JSON.stringify(updateData.availabilitySchedule);
+      }
     }
 
     // Only include nurse fields if role is NURSE
@@ -188,7 +216,8 @@ router.put('/:id', async (req, res) => {
       isActive: currentUser.isActive,
       specialization: currentUser.specialization || null,
       department: currentUser.department || null,
-      certificationLevel: currentUser.certificationLevel || null
+      certificationLevel: currentUser.certificationLevel || null,
+      availabilitySchedule: currentUser.availabilitySchedule || null
     };
     const newValue = {
       id: user.id,
@@ -200,7 +229,8 @@ router.put('/:id', async (req, res) => {
       isActive: user.isActive,
       specialization: user.specialization || null,
       department: user.department || null,
-      certificationLevel: user.certificationLevel || null
+      certificationLevel: user.certificationLevel || null,
+      availabilitySchedule: user.availabilitySchedule || null
     };
     await createAuditLog(req, 'UPDATE', 'User', id, `Updated user: ${currentUser.firstName} ${currentUser.lastName} (${currentUser.role}) - ${currentUser.email}`, oldValue, newValue);
 
@@ -227,11 +257,24 @@ router.get('/role/doctor', async (req, res) => {
         specialization: true,
         department: true,
         yearsExperience: true,
-        languages: true
+        languages: true,
+        availabilitySchedule: true
       }
     });
 
-    res.json({ success: true, data: doctors });
+    // Parse availabilitySchedule JSON strings to arrays
+    const parsedDoctors = doctors.map(doctor => {
+      if (doctor.availabilitySchedule) {
+        try {
+          doctor.availabilitySchedule = JSON.parse(doctor.availabilitySchedule);
+        } catch (e) {
+          doctor.availabilitySchedule = [];
+        }
+      }
+      return doctor;
+    });
+
+    res.json({ success: true, data: parsedDoctors });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
