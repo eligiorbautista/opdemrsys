@@ -5,8 +5,7 @@ import { FaHeartbeat, FaInfoCircle, FaQrcode } from 'react-icons/fa'
 function Welcome() {
   const [currentTime, setCurrentTime] = useState(new Date())
 
-  const currentUrl = typeof window !== 'undefined' ? window.location.origin : ''
-  const servicesUrl = `${currentUrl}/register`
+  const servicesUrl = `${window.location.origin}/register`
 
   useEffect(() => {
     const clockInterval = setInterval(() => {
