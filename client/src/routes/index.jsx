@@ -9,6 +9,9 @@ import DoctorConsultation from '../pages/DoctorConsultation'
 import NurseDocumentation from '../pages/NurseDocumentation'
 import Queue from '../pages/Queue'
 import QueueDisplay from '../pages/QueueDisplay'
+import Welcome from '../pages/Welcome'
+import ServiceGuide from '../pages/ServiceGuide'
+import PublicSelfService from '../pages/PublicSelfService'
 import Admin from '../pages/Admin'
 import Settings from '../pages/Settings'
 import ProtectedRoute from '../components/auth/ProtectedRoute'
@@ -24,6 +27,18 @@ export default createBrowserRouter([
   {
     path: '/display',
     element: <QueueDisplay />
+  },
+  {
+    path: '/welcome',
+    element: <Welcome />
+  },
+  {
+    path: '/info',
+    element: <ServiceGuide />
+  },
+  {
+    path: '/register',
+    element: <PublicSelfService />
   },
   {
     path: '/',

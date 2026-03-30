@@ -494,7 +494,7 @@ model QueueEntry {
   assignedTo  String?
   notes       String?
   
-  createdBy   String
+  createdBy   String?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
