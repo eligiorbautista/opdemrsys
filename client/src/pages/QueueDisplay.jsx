@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FaUser, FaClock, FaHourglass, FaHeartbeat } from 'react-icons/fa'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+
 function QueueDisplay() {
   const [queue, setQueue] = useState([])
   const [loading, setLoading] = useState(true)
@@ -26,7 +28,7 @@ function QueueDisplay() {
 
   const loadQueue = async () => {
     try {
-      const response = await fetch('/api/public/queue')
+      const response = await fetch(`${API_URL}/public/queue`)
       const data = await response.json()
       setQueue(data.data || [])
       setError(null)

@@ -14,6 +14,8 @@ import {
   FaTicketAlt
 } from 'react-icons/fa'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+
 function PublicSelfService() {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [step, setStep] = useState('phone') // phone, details, confirm, success
@@ -55,7 +57,7 @@ function PublicSelfService() {
 
   const loadQueueStatus = async () => {
     try {
-      const response = await fetch('/api/public/queue-status')
+      const response = await fetch(`${API_URL}/public/queue-status`)
       const data = await response.json()
       if (data.success) {
         setQueueStatus(data.data)
@@ -88,7 +90,7 @@ function PublicSelfService() {
     setError(null)
 
     try {
-      const response = await fetch(`/api/public/patients/lookup?phone=${encodeURIComponent(phone)}`)
+      const response = await fetch(`${API_URL}/public/patients/lookup?phone=${encodeURIComponent(phone)}`)
       const data = await response.json()
       
       if (data.success) {
@@ -121,7 +123,7 @@ function PublicSelfService() {
     setError(null)
 
     try {
-      const response = await fetch('/api/public/register', {
+      const response = await fetch(`${API_URL}/public/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

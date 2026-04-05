@@ -2,6 +2,11 @@ const cors = require('cors');
 
 const corsOptions = {
   origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, Postman, or same-origin requests)
+    if (!origin) {
+      return callback(null, true);
+    }
+
     const allowedOrigins = [
       'http://localhost:3000',
       'http://localhost:3001',
@@ -10,15 +15,27 @@ const corsOptions = {
       process.env.FRONTEND_URL
     ].filter(Boolean);
 
-    if (!origin || allowedOrigins.some(allowed => {
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (!allowed) return false;
+      
+      // Handle wildcard patterns like https://*.vercel.app
       if (allowed.includes('*')) {
-        const regex = new RegExp(allowed.replace('*', '.*'));
+        // Escape special regex characters except *
+        const pattern = allowed
+          .replace(/[.+?^${}()|[\]\\]/g, '\\$&') // Escape regex special chars
+          .replace(/\*/g, '.*'); // Replace * with .*
+        const regex = new RegExp(`^${pattern}$`);
         return regex.test(origin);
       }
+      
       return allowed === origin;
-    })) {
+    });
+
+    if (isAllowed) {
       callback(null, true);
     } else {
+      console.log(`CORS blocked origin: ${origin}`);
+      console.log(`Allowed origins: ${allowedOrigins.join(', ')}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
