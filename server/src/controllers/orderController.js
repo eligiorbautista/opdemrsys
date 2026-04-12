@@ -10,7 +10,7 @@ class OrderController {
         include: {
           visit: {
             include: {
-              nurseDocumentation: true
+              documentation: true
             }
           }
         },
