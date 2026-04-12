@@ -22,6 +22,7 @@ import {
   FaChartLine
 } from 'react-icons/fa'
 import { toast, Toaster } from 'sonner'
+import api from '../services/api'
 import patientService from '../services/patientService'
 import PatientFormModal from '../components/patient/patientForm'
 
@@ -54,68 +55,42 @@ function PatientDetail() {
 
   const loadConsultations = async () => {
     try {
-      const token = localStorage.getItem('token')
-      const userRole = JSON.parse(atob(token.split('.')[1]))?.role
-      console.log('=== DEBUG: Loading consultations ===')
-      console.log('Patient ID:', id)
-      console.log('User role:', userRole)
-      console.log('Token exists:', !!token)
-      console.log('API URL:', `/api/consultations/patient/${id}`)
-      
-      const response = await fetch(`/api/consultations/patient/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      
-      console.log('Response status:', response.status)
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()))
-      
-      if (!response.ok) {
-        console.error('Consultations API error:', response.status, response.statusText)
-        const errorText = await response.text()
-        console.error('Error details:', errorText)
-        return
-      }
-      
-      const data = await response.json()
-      console.log('Consultations data:', data)
-      if (data.data) {
-        console.log('Setting consultations, count:', data.data.length)
-        setConsultations(data.data)
+      const response = await api.get(`/consultations/patient/${id}`)
+      console.log('Consultations data:', response.data)
+      if (response.data?.data) {
+        setConsultations(response.data.data)
       }
     } catch (error) {
       console.error('Failed to load consultations:', error)
+      setConsultations([])
     }
   }
 
   const loadOrders = async () => {
     try {
-      const token = localStorage.getItem('token')
-      const userRole = JSON.parse(atob(token.split('.')[1]))?.role
-      console.log('Loading orders for patient:', id, 'User role:', userRole)
-
       const [labOrdersRes, procedureOrdersRes, followUpOrdersRes, nursingOrdersRes, referralOrdersRes] = await Promise.all([
-        fetch(`/api/lab-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-        fetch(`/api/procedure-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-        fetch(`/api/follow-up-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-        fetch(`/api/nursing-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-        fetch(`/api/referral-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+        api.get(`/lab-orders/patient/${id}`),
+        api.get(`/procedure-orders/patient/${id}`),
+        api.get(`/follow-up-orders/patient/${id}`),
+        api.get(`/nursing-orders/patient/${id}`),
+        api.get(`/referral-orders/patient/${id}`)
       ])
 
-      // Check for errors
-      const responses = [
-        { name: 'labOrders', res: labOrdersRes },
-        { name: 'procedureOrders', res: procedureOrdersRes },
-        { name: 'followUpOrders', res: followUpOrdersRes },
-        { name: 'nursingOrders', res: nursingOrdersRes },
-        { name: 'referralOrders', res: referralOrdersRes }
-      ]
-      
-      for (const { name, res } of responses) {
-        if (!res.ok) {
-          console.error(`${name} API error:`, res.status, res.statusText)
-          const errorText = await res.text()
-          console.error(`${name} Error details:`, errorText)
-        }
+      const orders = {
+        labOrders: labOrdersRes.data?.data || [],
+        procedureOrders: procedureOrdersRes.data?.data || [],
+        followUpOrders: followUpOrdersRes.data?.data || [],
+        nursingOrders: nursingOrdersRes.data?.data || [],
+        referralOrders: referralOrdersRes.data?.data || []
+      }
+
+      console.log('Orders loaded:', orders)
+      setOrders(orders)
+    } catch (error) {
+      console.error('Failed to load orders:', error)
+      setOrders({ labOrders: [], procedureOrders: [], followUpOrders: [], nursingOrders: [], referralOrders: [] })
+    }
+  }
       }
 
       const labOrders = (await labOrdersRes.json())?.data || []
