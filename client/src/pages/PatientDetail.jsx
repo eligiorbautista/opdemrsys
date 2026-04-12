@@ -56,7 +56,6 @@ function PatientDetail() {
   const loadConsultations = async () => {
     try {
       const response = await api.get(`/consultations/patient/${id}`)
-      console.log('Consultations data:', response.data)
       if (response.data?.data) {
         setConsultations(response.data.data)
       }
@@ -84,7 +83,6 @@ function PatientDetail() {
         referralOrders: referralOrdersRes.data?.data || []
       }
 
-      console.log('Orders loaded:', orders)
       setOrders(orders)
     } catch (error) {
       console.error('Failed to load orders:', error)
