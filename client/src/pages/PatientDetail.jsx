@@ -91,27 +91,6 @@ function PatientDetail() {
       setOrders({ labOrders: [], procedureOrders: [], followUpOrders: [], nursingOrders: [], referralOrders: [] })
     }
   }
-      }
-
-      const labOrders = (await labOrdersRes.json())?.data || []
-      const procedureOrders = (await procedureOrdersRes.json())?.data || []
-      const followUpOrders = (await followUpOrdersRes.json())?.data || []
-      const nursingOrders = (await nursingOrdersRes.json())?.data || []
-      const referralOrders = (await referralOrdersRes.json())?.data || []
-
-      console.log('Orders loaded:', { labOrders, procedureOrders, followUpOrders, nursingOrders, referralOrders })
-
-      setOrders({
-        labOrders,
-        procedureOrders,
-        followUpOrders,
-        nursingOrders,
-        referralOrders
-      })
-    } catch (error) {
-      console.error('Failed to load orders:', error)
-    }
-  }
 
   const handleUpdate = async (formData) => {
     try {
