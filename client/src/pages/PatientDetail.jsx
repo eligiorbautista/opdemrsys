@@ -55,11 +55,24 @@ function PatientDetail() {
   const loadConsultations = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch(`/api/consultations?patientId=${id}`, {
+      const userRole = JSON.parse(atob(token.split('.')[1]))?.role
+      console.log('Loading consultations for patient:', id, 'User role:', userRole)
+      
+      const response = await fetch(`/api/consultations/patient/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
+      
+      if (!response.ok) {
+        console.error('Consultations API error:', response.status, response.statusText)
+        const errorText = await response.text()
+        console.error('Error details:', errorText)
+        return
+      }
+      
       const data = await response.json()
+      console.log('Consultations data:', data)
       if (data.data) {
+        console.log('Setting consultations, count:', data.data.length)
         setConsultations(data.data)
       }
     } catch (error) {
@@ -70,6 +83,8 @@ function PatientDetail() {
   const loadOrders = async () => {
     try {
       const token = localStorage.getItem('token')
+      const userRole = JSON.parse(atob(token.split('.')[1]))?.role
+      console.log('Loading orders for patient:', id, 'User role:', userRole)
 
       const [labOrdersRes, procedureOrdersRes, followUpOrdersRes, nursingOrdersRes, referralOrdersRes] = await Promise.all([
         fetch(`/api/lab-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
@@ -79,11 +94,30 @@ function PatientDetail() {
         fetch(`/api/referral-orders/patient/${id}`, { headers: { Authorization: `Bearer ${token}` } })
       ])
 
+      // Check for errors
+      const responses = [
+        { name: 'labOrders', res: labOrdersRes },
+        { name: 'procedureOrders', res: procedureOrdersRes },
+        { name: 'followUpOrders', res: followUpOrdersRes },
+        { name: 'nursingOrders', res: nursingOrdersRes },
+        { name: 'referralOrders', res: referralOrdersRes }
+      ]
+      
+      for (const { name, res } of responses) {
+        if (!res.ok) {
+          console.error(`${name} API error:`, res.status, res.statusText)
+          const errorText = await res.text()
+          console.error(`${name} Error details:`, errorText)
+        }
+      }
+
       const labOrders = (await labOrdersRes.json())?.data || []
       const procedureOrders = (await procedureOrdersRes.json())?.data || []
       const followUpOrders = (await followUpOrdersRes.json())?.data || []
       const nursingOrders = (await nursingOrdersRes.json())?.data || []
       const referralOrders = (await referralOrdersRes.json())?.data || []
+
+      console.log('Orders loaded:', { labOrders, procedureOrders, followUpOrders, nursingOrders, referralOrders })
 
       setOrders({
         labOrders,
