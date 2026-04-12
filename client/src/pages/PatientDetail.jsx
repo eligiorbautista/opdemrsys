@@ -56,11 +56,18 @@ function PatientDetail() {
     try {
       const token = localStorage.getItem('token')
       const userRole = JSON.parse(atob(token.split('.')[1]))?.role
-      console.log('Loading consultations for patient:', id, 'User role:', userRole)
+      console.log('=== DEBUG: Loading consultations ===')
+      console.log('Patient ID:', id)
+      console.log('User role:', userRole)
+      console.log('Token exists:', !!token)
+      console.log('API URL:', `/api/consultations/patient/${id}`)
       
       const response = await fetch(`/api/consultations/patient/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
+      
+      console.log('Response status:', response.status)
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()))
       
       if (!response.ok) {
         console.error('Consultations API error:', response.status, response.statusText)
