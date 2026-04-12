@@ -23,7 +23,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), env: process.env.NODE_ENV || 'development' });
+});
+
+app.get('/api/test-route/:id', (req, res) => {
+  res.json({ message: 'Route working', id: req.params.id, role: req.user?.role });
 });
 
 require('./src/routes')(app);
