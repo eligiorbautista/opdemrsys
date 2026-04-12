@@ -6,7 +6,10 @@ const { authenticate, requireStaff } = require('../middleware/authMiddleware');
 router.use(authenticate);
 
 router.get('/', ConsultationController.getAll);
-router.get('/patient/:patientId', ConsultationController.getByPatient);
+router.get('/patient/:patientId', (req, res, next) => {
+  console.log('DEBUG: Patient consultations endpoint hit, patientId:', req.params.patientId, 'user:', req.user?.role);
+  next();
+}, ConsultationController.getByPatient);
 router.get('/:id', ConsultationController.getById);
 router.get('/:id/procedures', ConsultationController.getProcedureOrders);
 router.post('/', requireStaff, ConsultationController.createRules, ConsultationController.create);

@@ -4,7 +4,10 @@ const OrderController = require('../controllers/orderController');
 const { authenticate } = require('../middleware/authMiddleware');
 
 // Lab Orders
-router.get('/lab-orders/patient/:id', authenticate, OrderController.getLabOrdersByPatient);
+router.get('/lab-orders/patient/:id', authenticate, (req, res, next) => {
+  console.log('DEBUG: Lab orders endpoint hit, patientId:', req.params.id, 'user:', req.user?.role);
+  next();
+}, OrderController.getLabOrdersByPatient);
 router.post('/lab-orders', authenticate, OrderController.createLabOrder);
 router.put('/lab-orders/:id', authenticate, OrderController.updateLabOrder);
 
