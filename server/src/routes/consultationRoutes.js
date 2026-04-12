@@ -6,8 +6,8 @@ const { authenticate, requireStaff } = require('../middleware/authMiddleware');
 router.use(authenticate);
 
 router.get('/', ConsultationController.getAll);
-router.get('/:id', ConsultationController.getById);
 router.get('/patient/:patientId', ConsultationController.getByPatient);
+router.get('/:id', ConsultationController.getById);
 router.get('/:id/procedures', ConsultationController.getProcedureOrders);
 router.post('/', requireStaff, ConsultationController.createRules, ConsultationController.create);
 router.put('/:id', requireStaff, ConsultationController.update);
